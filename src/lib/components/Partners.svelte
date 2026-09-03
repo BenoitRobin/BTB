@@ -38,6 +38,11 @@
 </section>
 
 <style>
+	.partners-marquee {
+		-webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+		mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+	}
+
 	.partners-marquee__track {
 		animation: partners-marquee 40s linear infinite;
 	}
