@@ -23,7 +23,7 @@
 
 <style>
 	.marquee__track {
-		animation: marquee 28s linear infinite;
+		animation: marquee 42s linear infinite;
 	}
 
 	@keyframes marquee {
