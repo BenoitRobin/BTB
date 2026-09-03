@@ -8,7 +8,7 @@
 		<SectionHeading id="skills" title="Partenaires" />
 	</div>
 
-	<div class="partners-marquee mt-8 mb-16 w-full overflow-hidden">
+	<div class="partners-marquee mx-auto mt-8 mb-16 w-full max-w-6xl overflow-hidden px-6">
 		<div class="partners-marquee__track flex w-max items-center">
 			{#each [false, true] as hidden}
 				<div class="flex items-center" aria-hidden={hidden || undefined}>
