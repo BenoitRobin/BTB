@@ -24,7 +24,7 @@
 		<div class="mt-4 flex items-center justify-between">
 			<div>
 				<h3 class="text-2xl font-semibold">{mainEdition.title}</h3>
-				<p class="text-[#5e5e5e]">Chantelle, Allier</p>
+				<p class="text-[#5e5e5e]">{mainEdition.year}</p>
 			</div>
 			<a
 				href={mainEdition.galleryUrl}
