@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+
+@layer base {
+	body {
+		font-family: 'Inter Tight', sans-serif;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	button {
+		cursor: pointer;
+	}
+}
