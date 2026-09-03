@@ -21,5 +21,6 @@ export const pastBands: PastBand[] = [
 	{ name: "Bracass'Band", url: 'https://www.instagram.com/bracassband/' },
 	{ name: 'OOZ BAND', url: 'https://www.instagram.com/oozband_officiel/' },
 	{ name: 'Pelouse Grass Band', url: 'https://www.instagram.com/pelousegrassband/' },
-	{ name: "La Band'à Joe", url: 'https://www.instagram.com/labandajoe/' }
+	{ name: "La Band'à Joe", url: 'https://www.instagram.com/labandajoe/' },
+	{ name: 'Mango Coco', url: 'https://www.facebook.com/mangococo.brassband' }
 ];

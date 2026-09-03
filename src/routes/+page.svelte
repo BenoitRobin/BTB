@@ -4,7 +4,7 @@
 	import AboutMe from '$lib/components/AboutMe.svelte';
 	import PastBands from '$lib/components/PastBands.svelte';
 	import PastEditions from '$lib/components/PastEditions.svelte';
-	import Skills from '$lib/components/Skills.svelte';
+	import Partners from '$lib/components/Partners.svelte';
 	import ContactForm from '$lib/components/ContactForm.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 </script>
@@ -20,7 +20,7 @@
 	<AboutMe />
 	<PastBands />
 	<PastEditions />
-	<Skills />
+	<Partners />
 	<ContactForm />
 </main>
 
