@@ -20,8 +20,8 @@
 	<Hero />
 	<AnnouncementBanner />
 	<AboutMe />
-	<PastBands />
 	<PastEditions />
+	<PastBands />
 	<Partners />
 	<ContactForm />
 </main>

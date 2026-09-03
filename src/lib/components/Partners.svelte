@@ -11,15 +11,18 @@
 	<div class="mx-auto mt-8 mb-16 flex w-full max-w-6xl justify-center px-6">
 		<div class="flex flex-wrap justify-center gap-8">
 			{#each partners as partner (partner.name)}
-				<a
+				<svelte:element
+					this={partner.url ? 'a' : 'div'}
 					href={partner.url}
-					target="_blank"
-					rel="noreferrer"
+					target={partner.url ? '_blank' : undefined}
+					rel={partner.url ? 'noreferrer' : undefined}
 					title={partner.name}
-					class="h-20 w-20 shrink-0 overflow-hidden rounded-full border border-black/10 transition-transform hover:scale-105 md:h-24 md:w-24"
+					class="h-20 w-20 shrink-0 overflow-hidden rounded-full border border-black/10 transition-transform md:h-24 md:w-24 {partner.url
+						? 'hover:scale-105'
+						: ''}"
 				>
 					<img src={partner.logo} alt={partner.name} class="h-full w-full object-cover" />
-				</a>
+				</svelte:element>
 			{/each}
 		</div>
 	</div>

@@ -5,11 +5,15 @@ import groupama from '$lib/assets/partners/groupama.png';
 import laTaverneChantelle from '$lib/assets/partners/la-taverne-chantelle.png';
 import boulangerieLaurentJeremy from '$lib/assets/partners/boulangerie-laurent-jeremy.png';
 import ccSaintPourcainSiouleLimagne from '$lib/assets/partners/cc-saint-pourcain-sioule-limagne.png';
+import leMillesime from '$lib/assets/partners/le-millesime.png';
+import laPopoteQuiDepote from '$lib/assets/partners/la-popote-qui-depote.png';
+import grandFrais from '$lib/assets/partners/grand-frais.png';
+import babaYaga from '$lib/assets/partners/baba-yaga.png';
 
 export type Partner = {
 	name: string;
 	logo: string;
-	url: string;
+	url?: string;
 };
 
 export const partners: Partner[] = [
@@ -47,5 +51,24 @@ export const partners: Partner[] = [
 		name: 'Communauté de communes Saint-Pourçain Sioule Limagne',
 		logo: ccSaintPourcainSiouleLimagne,
 		url: 'https://www.facebook.com/ComComSPSL'
+	},
+	{
+		name: 'Le Millésime',
+		logo: leMillesime,
+		url: 'https://www.facebook.com/pantelvincent/?locale=fr_FR'
+	},
+	{
+		name: 'La Popote qui dépote',
+		logo: laPopoteQuiDepote
+	},
+	{
+		name: 'Grand Frais',
+		logo: grandFrais,
+		url: 'https://www.instagram.com/grandfrais/?hl=fr'
+	},
+	{
+		name: 'Baba Yaga',
+		logo: babaYaga,
+		url: 'https://babayaga.cafe/'
 	}
 ];
