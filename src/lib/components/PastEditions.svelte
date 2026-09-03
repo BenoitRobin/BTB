@@ -18,7 +18,7 @@
 			<img
 				src={placeholder2026}
 				alt={mainEdition.title}
-				class="aspect-video w-full rounded-2xl object-cover grayscale transition-all group-hover:grayscale-0"
+				class="aspect-video w-full rounded-2xl object-cover grayscale-0 transition-all group-hover:grayscale"
 			/>
 		</a>
 		<div class="mt-4 flex items-center justify-between">
@@ -43,7 +43,7 @@
 						<img
 							src={editionImages[i]}
 							alt={edition.title}
-							class="h-[300px] w-full rounded-2xl object-cover grayscale transition-all group-hover:grayscale-0"
+							class="h-[300px] w-full rounded-2xl object-cover grayscale-0 transition-all group-hover:grayscale"
 						/>
 					</a>
 					<div class="mt-3 flex items-center justify-between">
