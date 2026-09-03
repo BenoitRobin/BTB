@@ -39,8 +39,8 @@
 
 <style>
 	.partners-marquee {
-		-webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-		mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+		-webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+		mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
 	}
 
 	.partners-marquee__track {
