@@ -3,7 +3,7 @@
 		'Prochaine édition BTB#9 — préparez vos slips pour le 30 mai 2027 — fanfarons à vos candidatures !';
 </script>
 
-<div class="marquee overflow-hidden border-y-[3px] border-black bg-[#2babe2] py-3">
+<div class="marquee overflow-hidden border-y-[3px] border-black bg-[#2babe2] py-7">
 	<div class="marquee__track flex w-max items-center whitespace-nowrap">
 		{#each [false, true] as hidden}
 			<span
