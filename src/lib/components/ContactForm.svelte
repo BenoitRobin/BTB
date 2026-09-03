@@ -9,7 +9,11 @@
 
 	function handleSubmit(event: SubmitEvent) {
 		event.preventDefault();
-		// TODO: brancher un vrai envoi (email, API...) plus tard.
+
+		const subject = `Message de ${name || 'un visiteur du site'} — Bouge Ton Bouble`;
+		const body = `Nom : ${name}\nEmail : ${email}\n\n${message}`;
+		window.location.href = `mailto:contact@bougetonbouble.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
 		submitted = true;
 	}
 </script>
