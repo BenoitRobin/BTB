@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Hero from '$lib/components/Hero.svelte';
+	import AnnouncementBanner from '$lib/components/AnnouncementBanner.svelte';
 	import AboutMe from '$lib/components/AboutMe.svelte';
 	import PastBands from '$lib/components/PastBands.svelte';
 	import PastEditions from '$lib/components/PastEditions.svelte';
@@ -17,6 +18,7 @@
 
 <main>
 	<Hero />
+	<AnnouncementBanner />
 	<AboutMe />
 	<PastBands />
 	<PastEditions />
