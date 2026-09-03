@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from './Button.svelte';
 	import SectionHeading from './SectionHeading.svelte';
+	import bobImg from '$lib/assets/bob.png';
 </script>
 
 <section class="mt-16">
@@ -9,12 +10,11 @@
 	</div>
 
 	<div class="mx-auto mt-8 mb-16 flex w-full max-w-6xl flex-col gap-8 px-6 md:flex-row md:items-stretch">
-		<div
-			class="flex aspect-4/3 w-full items-center justify-center rounded md:w-2/5"
-			style="background: linear-gradient(135deg, #1a1a1a, #5e5e5e);"
-		>
-			<span class="text-sm text-white/70">Photo à venir</span>
-		</div>
+		<img
+			src={bobImg}
+			alt="Robert"
+			class="aspect-4/3 w-full rounded object-cover md:w-2/5"
+		/>
 		<div class="w-full text-left md:w-3/5">
 			<p class="mb-4">
 				Depuis presque 10 ans, j'organise un p'tit festival de fanfares avec mes amis dans mon
