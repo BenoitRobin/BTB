@@ -7,11 +7,11 @@
 	<div class="marquee__track flex w-max items-center whitespace-nowrap">
 		{#each [false, true] as hidden}
 			<span
-				class="banner-text flex items-center gap-10 text-[5rem] font-extrabold tracking-wide text-white uppercase"
+				class="banner-text flex items-center gap-4 text-xl font-extrabold tracking-wide text-white uppercase sm:gap-6 sm:text-3xl md:gap-10 md:text-[5rem]"
 				aria-hidden={hidden || undefined}
 			>
 				{#each { length: 6 } as _}
-					<span class="flex items-center gap-10 pr-10">
+					<span class="flex items-center gap-4 pr-4 sm:gap-6 sm:pr-6 md:gap-10 md:pr-10">
 						{message}
 						<span aria-hidden="true">★</span>
 					</span>
