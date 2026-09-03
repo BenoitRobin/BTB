@@ -9,11 +9,11 @@
 		<SectionHeading id="about-me" title="J'te parle de moi" />
 	</div>
 
-	<div class="mx-auto mt-8 mb-16 flex w-full max-w-6xl flex-col gap-8 px-6 md:flex-row md:items-stretch">
+	<div class="mx-auto mt-8 mb-16 flex w-full max-w-6xl flex-col gap-8 px-6 md:flex-row md:items-start">
 		<img
 			src={bobImg}
 			alt="Robert"
-			class="aspect-4/3 w-full rounded object-cover md:w-2/5"
+			class="h-auto w-full rounded object-contain md:w-2/5"
 		/>
 		<div class="w-full text-left md:w-3/5">
 			<p class="mb-4">
