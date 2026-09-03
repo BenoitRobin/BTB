@@ -12,7 +12,9 @@
 
 		const subject = `Message de ${name || 'un visiteur du site'} — Bouge Ton Bouble`;
 		const body = `Nom : ${name}\nEmail : ${email}\n\n${message}`;
-		window.location.href = `mailto:contact@bougetonbouble.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+		const mailLink = document.createElement('a');
+		mailLink.href = `mailto:contact@bougetonbouble.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+		mailLink.click();
 
 		submitted = true;
 	}
@@ -26,29 +28,32 @@
 	<div
 		class="mx-auto mt-8 flex w-full max-w-6xl flex-col gap-10 px-6 md:flex-row md:justify-between"
 	>
-		<form onsubmit={handleSubmit} class="flex w-full flex-col items-start md:w-[45%]">
-			<input
-				type="text"
-				bind:value={name}
-				placeholder="qui es-tu donc ?"
-				class="mb-6 h-12 w-full rounded-lg bg-black/[0.035] px-3 text-lg outline-none placeholder:font-normal"
-			/>
-			<input
-				type="email"
-				bind:value={email}
-				placeholder="Ton adresse électronique"
-				class="mb-6 h-12 w-full rounded-lg bg-black/[0.035] px-3 text-lg outline-none placeholder:font-normal"
-			/>
-			<textarea
-				bind:value={message}
-				placeholder="Donne nous envie de t'inviter..."
-				class="mb-10 h-32 w-full rounded-lg bg-black/[0.035] px-3 py-2 text-lg outline-none placeholder:font-normal"
-			></textarea>
-			<Button type="submit">Va petit oiseau, porte ce message</Button>
+		<div class="flex w-full flex-col items-start md:w-[45%]">
 			{#if submitted}
-				<p class="mt-4 text-[#5e5e5e]">Merci, on te répond vite !</p>
+				<p class="text-lg font-semibold">Merci, on te répond aussi vite qu'un fanfaron le peut !</p>
+			{:else}
+				<form onsubmit={handleSubmit} class="flex w-full flex-col items-start">
+					<input
+						type="text"
+						bind:value={name}
+						placeholder="qui es-tu donc ?"
+						class="mb-6 h-12 w-full rounded-lg bg-black/[0.035] px-3 text-lg outline-none placeholder:font-normal"
+					/>
+					<input
+						type="email"
+						bind:value={email}
+						placeholder="Ton adresse électronique"
+						class="mb-6 h-12 w-full rounded-lg bg-black/[0.035] px-3 text-lg outline-none placeholder:font-normal"
+					/>
+					<textarea
+						bind:value={message}
+						placeholder="Donne nous envie de t'inviter..."
+						class="mb-10 h-32 w-full rounded-lg bg-black/[0.035] px-3 py-2 text-lg outline-none placeholder:font-normal"
+					></textarea>
+					<Button type="submit">Va petit oiseau, porte ce message</Button>
+				</form>
 			{/if}
-		</form>
+		</div>
 
 		<div class="w-full md:w-[39%]">
 			<h3 class="mb-2 text-2xl font-bold">Fanfare ou bénévole, écris-nous !</h3>
