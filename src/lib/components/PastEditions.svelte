@@ -1,11 +1,11 @@
 <script lang="ts">
 	import SectionHeading from './SectionHeading.svelte';
 	import { mainEdition, otherEditions } from '$lib/data/editions';
-	import project1 from '$lib/assets/project1.jpg';
-	import project2 from '$lib/assets/project2.jpg';
-	import project3 from '$lib/assets/project3.jpg';
+	import placeholder2026 from '$lib/assets/placeholder/placeholder2026.png';
+	import placeholder2025 from '$lib/assets/placeholder/placeholder2025.png';
+	import placeholder2024 from '$lib/assets/placeholder/placeholder2024.png';
 
-	const editionImages = [project2, project3];
+	const editionImages = [placeholder2025, placeholder2024];
 </script>
 
 <section class="mt-16">
@@ -16,7 +16,7 @@
 	<div class="mx-auto mt-8 mb-16 w-full max-w-6xl px-6">
 		<a href={mainEdition.galleryUrl} target="_blank" rel="noreferrer" class="group mb-8 block">
 			<img
-				src={project1}
+				src={placeholder2026}
 				alt={mainEdition.title}
 				class="aspect-video w-full rounded-2xl object-cover grayscale transition-all group-hover:grayscale-0"
 			/>
