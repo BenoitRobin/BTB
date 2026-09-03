@@ -18,8 +18,8 @@
 						href={band.url}
 						target="_blank"
 						rel="noreferrer"
-						style="background-color: {badgeColors[i % badgeColors.length]}"
-						class="flex h-full min-h-[92px] items-center justify-center rounded-2xl border-[3px] border-black px-6 py-5 text-center text-lg font-extrabold tracking-wide text-white uppercase drop-shadow-[2px_2px_0_rgba(0,0,0,0.35)] transition-transform hover:-translate-y-0.5"
+						style="--badge-color: {badgeColors[i % badgeColors.length]}"
+						class="badge flex h-full min-h-[92px] items-center justify-center rounded-2xl border-[3px] border-black px-6 py-5 text-center text-lg font-extrabold tracking-wide uppercase drop-shadow-[2px_2px_0_rgba(0,0,0,0.35)] transition-all hover:-translate-y-0.5"
 					>
 						{band.name}
 					</a>
@@ -28,3 +28,15 @@
 		</ul>
 	</div>
 </section>
+
+<style>
+	.badge {
+		background-color: var(--badge-color);
+		color: white;
+	}
+
+	.badge:hover {
+		background-color: white;
+		color: var(--badge-color);
+	}
+</style>
