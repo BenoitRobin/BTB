@@ -10,7 +10,7 @@
 	</div>
 
 	<div
-		class="mx-auto mt-8 mb-16 flex w-full max-w-6xl flex-col gap-8 px-6 md:flex-row md:items-start"
+		class="mx-auto mt-8 mb-16 flex w-full max-w-6xl flex-col gap-8 px-6 md:flex-row md:items-center"
 	>
 		<img src={bobImg} alt="Robert" class="h-auto w-full rounded object-contain md:w-2/5" />
 		<div class="w-full text-left md:w-3/5">
