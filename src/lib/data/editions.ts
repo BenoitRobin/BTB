@@ -2,15 +2,17 @@ export type Edition = {
 	slug: string;
 	title: string;
 	year: string;
+	galleryUrl: string;
 };
 
 export const mainEdition: Edition = {
-	slug: 'edition-2024',
-	title: "L'édition 2024",
-	year: '2024'
+	slug: 'edition-2026',
+	title: 'BTB#8',
+	year: '2026',
+	galleryUrl: 'https://adobe.ly/4e7JcUc'
 };
 
 export const otherEditions: Edition[] = [
-	{ slug: 'edition-2023', title: "L'édition 2023", year: '2023' },
-	{ slug: 'edition-2022', title: "L'édition 2022", year: '2022' }
+	{ slug: 'edition-2025', title: 'BTB#7', year: '2025', galleryUrl: 'https://adobe.ly/4dZQnMd' },
+	{ slug: 'edition-2024', title: 'BTB#6', year: '2024', galleryUrl: 'https://adobe.ly/3xh4SKN' }
 ];

@@ -14,7 +14,7 @@
 	</div>
 
 	<div class="mx-auto mt-8 mb-16 w-full max-w-6xl px-6">
-		<a href="/work/{mainEdition.slug}" class="group mb-8 block">
+		<a href={mainEdition.galleryUrl} target="_blank" rel="noreferrer" class="group mb-8 block">
 			<img
 				src={project1}
 				alt={mainEdition.title}
@@ -27,7 +27,9 @@
 				<p class="text-[#5e5e5e]">Chantelle, Allier</p>
 			</div>
 			<a
-				href="/work/{mainEdition.slug}"
+				href={mainEdition.galleryUrl}
+				target="_blank"
+				rel="noreferrer"
 				class="block rounded-full border border-black px-6 text-3xl leading-[1.8]"
 			>
 				→
@@ -37,7 +39,7 @@
 		<div class="mt-10 flex flex-wrap justify-between gap-6">
 			{#each otherEditions as edition, i (edition.slug)}
 				<article class="w-full sm:w-[48%]">
-					<a href="/work/{edition.slug}" class="group block">
+					<a href={edition.galleryUrl} target="_blank" rel="noreferrer" class="group block">
 						<img
 							src={editionImages[i]}
 							alt={edition.title}
@@ -49,7 +51,12 @@
 							<h3 class="font-semibold">{edition.title}</h3>
 							<p class="text-[#5e5e5e]">{edition.year}</p>
 						</div>
-						<a href="/work/{edition.slug}" class="block rounded-full border border-black px-4 text-xl leading-[1.8]">
+						<a
+							href={edition.galleryUrl}
+							target="_blank"
+							rel="noreferrer"
+							class="block rounded-full border border-black px-4 text-xl leading-[1.8]"
+						>
 							→
 						</a>
 					</div>
