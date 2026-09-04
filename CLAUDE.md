@@ -1,0 +1,30 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## What this is
+
+The website for "Bouge Ton Bouble" (BTB), a brass band / fanfare festival. It's a single-page SvelteKit site with no backend: one route (`/`) rendered as a stack of section components, static content (partners, past bands, past editions) defined as TypeScript data, and a contact "form" that just opens the visitor's mail client via a `mailto:` link — there is no server-side form handling or API.
+
+## Commands
+
+- `npm run dev` — start the dev server
+- `npm run build` — production build
+- `npm run preview` — preview the production build
+- `npm run check` — sync SvelteKit types and type-check with `svelte-check` (run this after editing `.svelte` files or types)
+- `npm run lint` — `prettier --check .` followed by `eslint .`
+- `npm run format` — apply Prettier formatting
+
+There is no test suite in this repo.
+
+## Architecture
+
+- **Single page, section components**: `src/routes/+page.svelte` just imports and stacks the section components in order (`Navbar`, `Hero`, `AnnouncementBanner`, `AboutMe`, `PastEditions`, `PastBands`, `Partners`, `ContactForm`, `Footer`). To reorder or add a section, edit that file; each component is self-contained and manages its own `<section>`/layout.
+- **`src/routes/+layout.svelte`**: loads global CSS (`layout.css`) and the Google Font (`Baloo 2`), sets the favicon. No layout chrome (nav/footer live inside `+page.svelte`, not the layout).
+- **Content lives in `src/lib/data/*.ts`, not in components**: `editions.ts` (current + past festival editions, each with an external gallery URL), `partners.ts` (sponsor list, each with a local logo import and optional external URL), `pastBands.ts` (past performers with external links). When asked to add/update a partner, band, or edition, edit these typed data files rather than the components that render them.
+- **Partner logos**: imported as ES modules from `src/lib/assets/partners/` and referenced from `partners.ts` — adding a partner means dropping the image in that folder and adding an entry with the corresponding import.
+- **Marquee/scrolling pattern**: `AnnouncementBanner.svelte` and `Partners.svelte` both implement an infinite horizontal scroll the same way — render the content twice (`{#each [false, true] as hidden}`, second copy `aria-hidden`), animate `transform: translateX(...)` via CSS `@keyframes` on a `width: max-content` track, and disable the animation under `@media (prefers-reduced-motion: reduce)`. Follow this pattern for any new marquee-style content instead of introducing a JS-driven carousel.
+- **No backend/API routes**: everything is static/client-rendered; `ContactForm.svelte` builds a `mailto:` link client-side rather than posting anywhere.
+- Runes mode is force-enabled project-wide for non-`node_modules` Svelte files via `vite.config.ts`'s `compilerOptions.runes`, so components should use Svelte 5 runes (`$state`, `$props`, etc.), as already done in `ContactForm.svelte` and `+layout.svelte`.
+- Styling is Tailwind CSS v4 via the `@tailwindcss/vite` plugin (no `tailwind.config.js` — v4 is CSS-config-driven through `src/routes/layout.css`, which Prettier's `tailwindStylesheet` setting also points to for class sorting).
+- Path alias: use `$lib/...` for anything under `src/lib` (components, data, assets).
