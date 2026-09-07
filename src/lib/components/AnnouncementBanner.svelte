@@ -1,6 +1,6 @@
 <script lang="ts">
 	const message =
-		'Prochaine édition BTB#9 — préparez vos slips pour le 30 mai 2027 — fanfarons à vos candidatures !';
+		'Prochaine édition BTB#9 — préparez vos slips pour le 29 mai 2027 — fanfarons à vos candidatures !';
 </script>
 
 <div class="marquee overflow-hidden border-y-[3px] border-black bg-[#2babe2] py-2">
