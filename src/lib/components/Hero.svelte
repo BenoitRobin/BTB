@@ -12,7 +12,7 @@
 			J'organise un p'tit <span class="highlight">raoût musical</span> avec mes amis.
 		</h1>
 		<p class="max-w-[34ch] text-2xl">
-			Des fanfares plein les rues de Chantelle, dans l'Allier. Viendez nous retrouver !
+			Des fanfares plein les rues de Chantelle. Viendez nous retrouver !
 		</p>
 		<div class="flex flex-wrap gap-4">
 			<Button href="/#contact-form" variant="pink">Ta fanfare veut venir ?</Button>
@@ -36,7 +36,7 @@
 			BTB#9<br />29 mai 2027
 		</p>
 		<figcaption class="absolute -right-1 -bottom-6 -rotate-3 text-xl">
-			↖ Bob, notre mascotte
+			↖ lui, c'est Bob !
 		</figcaption>
 	</figure>
 </section>

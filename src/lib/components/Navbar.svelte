@@ -13,10 +13,12 @@
 <header class="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6">
 	<nav class="mx-auto w-full max-w-6xl sketch bg-white px-6 py-3">
 		<div class="flex items-center justify-between">
-			<a href="/" class="font-display text-4xl leading-none">BTB</a>
+			<a href="/" class="font-display text-2xl leading-none lg:text-4xl">Bouge Ton Bouble</a>
 			<div class="hidden items-center gap-8 sm:flex md:gap-10">
 				{#each links as link (link.href)}
-					<a href={link.href} class="border-b-2 border-dashed border-ink hover:border-solid"
+					<a
+						href={link.href}
+						class="border-b-2 border-dashed border-ink hover:border-solid hover:highlight"
 						>{link.label}</a
 					>
 				{/each}
