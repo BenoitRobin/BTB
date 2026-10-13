@@ -38,6 +38,12 @@
 }
 
 @layer base {
+	@media (prefers-reduced-motion: no-preference) {
+		html {
+			scroll-behavior: smooth;
+		}
+	}
+
 	body {
 		font-family: var(--font-hand);
 		font-size: 1.3125rem;

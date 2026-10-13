@@ -8,6 +8,7 @@
 	import Partners from '$lib/components/Partners.svelte';
 	import ContactForm from '$lib/components/ContactForm.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import ScrollToTop from '$lib/components/ScrollToTop.svelte';
 </script>
 
 <svelte:head>
@@ -31,3 +32,5 @@
 </main>
 
 <Footer />
+
+<ScrollToTop />
