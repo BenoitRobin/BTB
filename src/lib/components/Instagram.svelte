@@ -35,13 +35,43 @@
 
 	function toggleSound() {
 		muted = !muted;
-		// Unmute and play right inside the tap: iOS Safari pauses a muted-autoplay video unmuted any later
-		// (e.g. by Svelte's DOM update after this handler). Asking for sound is also an explicit request to
-		// watch, even if reduced motion kept it paused; play() on a playing video does nothing.
+		// Unmuted right inside the click (not through the template) so Safari doesn't pause the video.
+		// Asking for sound is an explicit request to watch, even if reduced motion kept it paused;
+		// play() on a playing video does nothing.
 		video.muted = muted;
 		if (!muted) video.play().catch(() => {});
 	}
 </script>
+
+<!-- In a snippet so its updates run apart from the video's: sharing one update with the video made
+     Svelte re-set the video's src on the first toggle after page load, reloading it (black frame, second click needed). -->
+{#snippet soundButton()}
+	<button
+		type="button"
+		onclick={toggleSound}
+		aria-label={muted ? 'Activer le son' : 'Couper le son'}
+		aria-pressed={!muted}
+		class="absolute right-4 bottom-4 flex h-11 w-11 items-center justify-center sketch bg-white text-ink shadow-sketch transition-transform hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-none sm:right-5 sm:bottom-5"
+	>
+		<svg
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			aria-hidden="true"
+			class="h-6 w-6"
+		>
+			<path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+			{#if muted}
+				<path d="M17 9l5 6M22 9l-5 6" />
+			{:else}
+				<path d="M16.5 8.5a5 5 0 0 1 0 7M19.5 5.5a9 9 0 0 1 0 13" />
+			{/if}
+		</svg>
+	</button>
+{/snippet}
 
 <section class="mx-auto mt-20 w-full max-w-6xl px-6">
 	<SectionHeading id="instagram" title="Ça se passe sur Insta" />
@@ -89,7 +119,7 @@
 				bind:this={video}
 				src={videoSrc}
 				preload="none"
-				{muted}
+				muted
 				loop
 				playsinline
 				aria-label="Vidéo du festival Bouge Ton Bouble"
@@ -97,31 +127,7 @@
 				{@attach playWhenVisible}
 			></video>
 
-			<button
-				type="button"
-				onclick={toggleSound}
-				aria-label={muted ? 'Activer le son' : 'Couper le son'}
-				aria-pressed={!muted}
-				class="absolute right-4 bottom-4 flex h-11 w-11 items-center justify-center sketch bg-white text-ink shadow-sketch transition-transform hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-none sm:right-5 sm:bottom-5"
-			>
-				<svg
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					aria-hidden="true"
-					class="h-6 w-6"
-				>
-					<path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
-					{#if muted}
-						<path d="M17 9l5 6M22 9l-5 6" />
-					{:else}
-						<path d="M16.5 8.5a5 5 0 0 1 0 7M19.5 5.5a9 9 0 0 1 0 13" />
-					{/if}
-				</svg>
-			</button>
+			{@render soundButton()}
 		</div>
 	</div>
 
