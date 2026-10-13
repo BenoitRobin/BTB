@@ -18,7 +18,7 @@
 	} = $props();
 
 	const base =
-		'sketch inline-flex items-center justify-center text-ink shadow-sketch transition-transform hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-none';
+		'wiggle sketch inline-flex items-center justify-center text-ink shadow-sketch transition-transform hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-none';
 	const sizes = {
 		default: 'px-7 py-3 text-2xl',
 		nav: 'px-5 py-1.5 text-xl'
@@ -40,3 +40,35 @@
 		{@render children()}
 	</button>
 {/if}
+
+<style>
+	/* `transform` rotate, so it stacks with the Tailwind `translate` hover lift.
+	   Real hover only: on touch screens :hover sticks after a tap. */
+	@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+		.wiggle:hover {
+			animation: wiggle 1s ease-in-out;
+		}
+	}
+
+	@keyframes wiggle {
+		0%,
+		100% {
+			transform: rotate(0);
+		}
+		15% {
+			transform: rotate(-2deg);
+		}
+		30% {
+			transform: rotate(1.5deg);
+		}
+		45% {
+			transform: rotate(-1deg);
+		}
+		60% {
+			transform: rotate(0.6deg);
+		}
+		75% {
+			transform: rotate(-0.25deg);
+		}
+	}
+</style>
