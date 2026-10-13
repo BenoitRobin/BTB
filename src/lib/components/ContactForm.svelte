@@ -6,7 +6,8 @@
 	import type { ActionData } from '../../routes/$types';
 	import { CONTACT_TYPES, PUBLIC_CONTACT_EMAIL, contactTypeSlug } from '$lib/data/contact';
 
-	let { form }: { form: ActionData } = $props();
+	// `bingo`: squares ticked on /bingo, sent along as a fanfare application.
+	let { form, bingo }: { form: ActionData; bingo?: string[] } = $props();
 
 	let sending = $state(false);
 	// Set when the request itself fails (network down, server crash), where no `form` result comes back.
@@ -19,7 +20,7 @@
 		CONTACT_TYPES.find((t) => contactTypeSlug(t) === page.url.searchParams.get('type')) ?? ''
 	);
 	// Drives the ticked choice and the message prompt; a failed submit's value wins, then the link's.
-	let selectedType = $derived(values?.type ?? typeFromUrl);
+	let selectedType = $derived(values?.type ?? (typeFromUrl || (bingo ? 'Fanfaron' : '')));
 
 	const field = 'border-0 border-b-2 border-ink bg-transparent px-0.5 py-1.5 outline-none';
 	const errorText = 'text-lg text-red-700';
@@ -27,12 +28,20 @@
 
 <section class="mx-auto mt-20 flex w-full max-w-6xl flex-col gap-10 px-6 pb-20 md:flex-row">
 	<div class="min-w-0 md:flex-1">
-		<SectionHeading id="contact" title="Fanfare ou bénévole, écris-nous !" />
-		<p class="mt-6 max-w-[40ch]">
-			Tu fais partie d'une fanfare et tu veux postuler pour la prochaine édition ? Ou tu veux donner
-			un coup de main et devenir bénévole pendant tout un week-end ? Laisse-nous un message et on
-			revient vers toi rapidement.
-		</p>
+		{#if bingo}
+			<SectionHeading id="contact" title="Envoie ta grille à Bob !" />
+			<p class="mt-6 max-w-[40ch]">
+				Bob reçoit ta grille ({bingo.length} cases cochées) avec ton message. Présente-nous ta fanfare
+				et donne-nous envie de vous inviter à BTB#9 !
+			</p>
+		{:else}
+			<SectionHeading id="contact" title="Fanfare ou bénévole, écris-nous !" />
+			<p class="mt-6 max-w-[40ch]">
+				Tu fais partie d'une fanfare et tu veux postuler pour la prochaine édition ? Ou tu veux
+				donner un coup de main et devenir bénévole pendant tout un week-end ? Laisse-nous un message
+				et on revient vers toi rapidement.
+			</p>
+		{/if}
 	</div>
 
 	<!-- After a successful send the box hugs the thank-you message instead of stretching to the text column. -->
@@ -126,6 +135,10 @@
 					>
 					{#if errors?.message}<span class={errorText}>{errors.message}</span>{/if}
 				</label>
+
+				{#each bingo ?? [] as square (square)}
+					<input type="hidden" name="bingo" value={square} />
+				{/each}
 
 				<!-- Honeypot: hidden from people (display: none), bots fill it in and get silently dropped. -->
 				<label class="hidden">

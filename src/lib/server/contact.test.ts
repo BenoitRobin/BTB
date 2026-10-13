@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { isSpam, validateContact } from './contact';
 import { CONTACT_TYPES, contactTypeSlug } from '$lib/data/contact';
+import { BINGO_SQUARES } from '$lib/data/bingo';
 
 function form(fields: Record<string, string>) {
 	const data = new FormData();
@@ -29,6 +30,13 @@ describe('validateContact', () => {
 		expect(validateContact(form({ ...valid, email: 'pas-un-mail' })).errors).toHaveProperty(
 			'email'
 		);
+	});
+
+	it('keeps only known bingo squares', () => {
+		const data = form(valid);
+		data.append('bingo', BINGO_SQUARES[0]);
+		data.append('bingo', 'Texte inventé');
+		expect(validateContact(data).values.bingo).toEqual([BINGO_SQUARES[0]]);
 	});
 
 	it('rejects a type that is not offered', () => {
