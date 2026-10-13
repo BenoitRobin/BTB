@@ -8,7 +8,7 @@
 >
 	<div class="flex min-w-0 flex-col items-start gap-6 md:flex-[3]">
 		<p class="-rotate-2 text-2xl">Hello, je m'appelle Robert ↓</p>
-		<h1 class="text-5xl leading-[0.95] md:text-7xl lg:text-8xl">
+		<h1 class="text-5xl leading-[0.95] md:text-5xl lg:text-6xl">
 			J'organise un p'tit <span class="highlight">raoût musical</span> avec mes amis.
 		</h1>
 		<p class="max-w-[34ch] text-2xl">
