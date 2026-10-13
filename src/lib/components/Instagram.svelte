@@ -35,8 +35,11 @@
 
 	function toggleSound() {
 		muted = !muted;
-		// Asking for sound is an explicit request to watch, even if reduced motion kept it paused.
-		if (!muted && video.paused) video.play().catch(() => {});
+		// Unmute and play right inside the tap: iOS Safari pauses a muted-autoplay video unmuted any later
+		// (e.g. by Svelte's DOM update after this handler). Asking for sound is also an explicit request to
+		// watch, even if reduced motion kept it paused; play() on a playing video does nothing.
+		video.muted = muted;
+		if (!muted) video.play().catch(() => {});
 	}
 </script>
 
