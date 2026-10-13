@@ -31,6 +31,7 @@
 </script>
 
 {#if href}
+	<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- callers only pass in-page anchors (/#section) -->
 	<a {href} class="{base} {sizes[size]} {variants[variant]}">
 		{@render children()}
 	</a>

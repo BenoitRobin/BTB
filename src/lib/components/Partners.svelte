@@ -8,7 +8,7 @@
 
 	<div class="partners-marquee mt-8 overflow-hidden sketch-alt bg-white py-6">
 		<div class="partners-marquee__track flex w-max items-center">
-			{#each [false, true] as hidden}
+			{#each [false, true] as hidden (hidden)}
 				<div class="flex items-center" aria-hidden={hidden || undefined}>
 					{#each partners as partner (partner.name)}
 						<svelte:element

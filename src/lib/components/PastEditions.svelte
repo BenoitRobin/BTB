@@ -20,6 +20,7 @@
 
 	<div class="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
 		{#each editions as edition, i (edition.slug)}
+			<!-- eslint-disable svelte/no-navigation-without-resolve -- external URL, not an app route -->
 			<a
 				href={edition.galleryUrl}
 				target="_blank"
@@ -35,6 +36,7 @@
 				/>
 				<p class="mt-2 text-center text-2xl">{edition.title} · {edition.year} →</p>
 			</a>
+			<!-- eslint-enable svelte/no-navigation-without-resolve -->
 		{/each}
 	</div>
 </section>

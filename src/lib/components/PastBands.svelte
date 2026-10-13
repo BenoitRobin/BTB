@@ -17,6 +17,7 @@
 	<ul class="mt-8 flex flex-wrap gap-x-4 gap-y-3.5">
 		{#each pastBands as band, i (band.name)}
 			<li>
+				<!-- eslint-disable svelte/no-navigation-without-resolve -- external URL, not an app route -->
 				<a
 					href={band.url}
 					target="_blank"
@@ -28,6 +29,7 @@
 				>
 					{band.name}
 				</a>
+				<!-- eslint-enable svelte/no-navigation-without-resolve -->
 			</li>
 		{/each}
 	</ul>
