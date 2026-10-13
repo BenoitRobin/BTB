@@ -9,6 +9,9 @@
 	import ContactForm from '$lib/components/ContactForm.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import ScrollToTop from '$lib/components/ScrollToTop.svelte';
+	import Instagram from '$lib/components/Instagram.svelte';
+
+	let { data } = $props();
 </script>
 
 <svelte:head>
@@ -24,6 +27,7 @@
 <main>
 	<Hero />
 	<AnnouncementBanner />
+	<Instagram posts={data.instagramPosts} />
 	<AboutMe />
 	<PastEditions />
 	<PastBands />

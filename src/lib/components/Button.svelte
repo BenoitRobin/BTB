@@ -6,10 +6,12 @@
 		type = 'button',
 		size = 'default',
 		variant = 'sky',
+		external = false,
 		onclick,
 		children
 	}: {
 		href?: string;
+		external?: boolean;
 		type?: 'button' | 'submit';
 		size?: 'default' | 'nav';
 		variant?: 'sky' | 'pink' | 'paper';
@@ -31,8 +33,14 @@
 </script>
 
 {#if href}
-	<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- callers only pass in-page anchors (/#section) -->
-	<a {href} class="{base} {sizes[size]} {variants[variant]}">
+	<!-- eslint-disable svelte/no-navigation-without-resolve -- callers pass in-page anchors (/#section) or external URLs -->
+	<a
+		{href}
+		target={external ? '_blank' : undefined}
+		rel={external ? 'noreferrer' : undefined}
+		class="{base} {sizes[size]} {variants[variant]}"
+	>
+		<!-- eslint-enable svelte/no-navigation-without-resolve -->
 		{@render children()}
 	</a>
 {:else}
