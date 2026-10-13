@@ -23,11 +23,7 @@
 <Navbar />
 
 <main class="mx-auto mb-20 w-full max-w-6xl px-6">
-	<a
-		href="{resolve('/')}#editions"
-		class="mt-6 inline-block border-b-2 border-dashed border-ink text-xl hover:border-solid"
-		>← Retour</a
-	>
+	<a href="{resolve('/')}#editions" class="mt-6 inline-block sketch-link text-xl">← Retour</a>
 
 	<div class="mt-8 flex flex-wrap items-end justify-between gap-4">
 		<SectionHeading title="{edition.title} · {edition.year}" />
@@ -36,8 +32,7 @@
 			{#each otherAlbums as other (other.slug)}
 				<a
 					href={resolve('/editions/[slug]', { slug: other.slug })}
-					class="border-b-2 border-dashed border-ink hover:border-solid hover:highlight"
-					>{other.title} · {other.year}</a
+					class="sketch-link hover:highlight">{other.title} · {other.year}</a
 				>
 			{/each}
 		</nav>

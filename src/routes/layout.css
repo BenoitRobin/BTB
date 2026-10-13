@@ -37,6 +37,32 @@
 	);
 }
 
+/* Photo frame used by the Instagram grid, its video and the edition cards. */
+@utility polaroid {
+	border: 2px solid var(--color-ink);
+	background-color: #fff;
+	box-shadow: var(--shadow-sketch);
+}
+
+/* Dashed hand-drawn underline that turns solid on hover. */
+@utility sketch-link {
+	border-bottom: 2px dashed var(--color-ink);
+	&:hover {
+		border-bottom-style: solid;
+	}
+}
+
+/* Small looping back-and-forth: set the end position with --bob-to (hero arrows, edition cards, contact bird). */
+@keyframes bob {
+	0%,
+	100% {
+		transform: none;
+	}
+	50% {
+		transform: var(--bob-to);
+	}
+}
+
 @layer base {
 	@media (prefers-reduced-motion: no-preference) {
 		html {

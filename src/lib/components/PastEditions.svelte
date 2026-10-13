@@ -21,7 +21,7 @@
 		{#each editions as edition, i (edition.slug)}
 			<a
 				href={resolve('/editions/[slug]', { slug: edition.slug })}
-				class="card group block border-2 border-ink bg-white p-3 pb-2 shadow-sketch transition-transform hover:rotate-0 {tilts[
+				class="card group block polaroid p-3 pb-2 transition-transform hover:rotate-0 {tilts[
 					i % tilts.length
 				]}"
 			>
@@ -80,7 +80,8 @@
 	@media (prefers-reduced-motion: no-preference) {
 		/* The arrow keeps nudging towards where the burst pops up. */
 		.nudge {
-			animation: nudge 1.2s ease-in-out infinite;
+			--bob-to: translateX(5px);
+			animation: bob 1.2s ease-in-out infinite;
 		}
 		/* While hovered the burst spins and each stroke flickers on its own rhythm. */
 		.card:hover .burst {
@@ -88,16 +89,6 @@
 		}
 		.card:hover .ray {
 			animation: flicker var(--ray-duration) ease-in-out var(--ray-delay) infinite alternate;
-		}
-	}
-
-	@keyframes nudge {
-		0%,
-		100% {
-			transform: translateX(0);
-		}
-		50% {
-			transform: translateX(5px);
 		}
 	}
 

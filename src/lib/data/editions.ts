@@ -15,17 +15,17 @@ export type Edition = {
 	lightroomAlbumId: string;
 };
 
-export const mainEdition: Edition = {
-	slug: 'edition-2026',
-	title: 'BTB#8',
-	year: '2026',
-	image: placeholder2026,
-	galleryUrl: 'https://adobe.ly/4e7JcUc',
-	lightroomSpaceId: '8bab901cb9624842b55516c1895571f3',
-	lightroomAlbumId: 'efaaabaf9f8b4452b7a6d05596000942'
-};
-
-export const otherEditions: Edition[] = [
+/** Every past edition, most recent first. */
+export const editions: Edition[] = [
+	{
+		slug: 'edition-2026',
+		title: 'BTB#8',
+		year: '2026',
+		image: placeholder2026,
+		galleryUrl: 'https://adobe.ly/4e7JcUc',
+		lightroomSpaceId: '8bab901cb9624842b55516c1895571f3',
+		lightroomAlbumId: 'efaaabaf9f8b4452b7a6d05596000942'
+	},
 	{
 		slug: 'edition-2025',
 		title: 'BTB#7',
@@ -45,6 +45,3 @@ export const otherEditions: Edition[] = [
 		lightroomAlbumId: '269aa83af34b471f9b67d1038ecf0ec7'
 	}
 ];
-
-/** Every edition, most recent first. */
-export const editions = [mainEdition, ...otherEditions];

@@ -54,13 +54,12 @@
 		{#if posts.length}
 			<div class="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6">
 				{#each posts as post, i (post.id)}
-					<!-- eslint-disable svelte/no-navigation-without-resolve -- external URL, not an app route -->
 					<a
 						href={post.permalink}
 						target="_blank"
-						rel="noreferrer"
+						rel="external noreferrer"
 						class={[
-							'block border-2 border-ink bg-white p-2 shadow-sketch transition-transform hover:rotate-0 sm:p-3',
+							'block polaroid p-2 transition-transform hover:rotate-0 sm:p-3',
 							tilts[i % tilts.length],
 							// Two columns on phones: drop an odd last post rather than leave it alone on its row.
 							posts.length % 2 === 1 && i === posts.length - 1 && 'max-sm:hidden'
@@ -73,14 +72,13 @@
 							class="aspect-square w-full object-cover"
 						/>
 					</a>
-					<!-- eslint-enable svelte/no-navigation-without-resolve -->
 				{/each}
 			</div>
 		{/if}
 
 		<div
 			class={[
-				'relative mx-auto w-full max-w-xs rotate-1 border-2 border-ink bg-white p-2 shadow-sketch transition-transform hover:rotate-0 sm:p-3',
+				'relative mx-auto w-full max-w-xs rotate-1 polaroid p-2 transition-transform hover:rotate-0 sm:p-3',
 				posts.length > 0 && 'md:max-w-none'
 			]}
 		>

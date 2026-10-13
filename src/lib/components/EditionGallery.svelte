@@ -6,18 +6,17 @@
 	let { edition, photos }: { edition: Edition; photos: EditionPhoto[] } = $props();
 
 	let viewer = $state<HTMLDialogElement>();
-	let viewerIndex = $state(0);
-	// The full-size photo is only rendered while the viewer is open, so it isn't downloaded on page load.
-	let viewerOpen = $state(false);
+	// Photo shown in the viewer, or null while it is closed: the full-size image is only
+	// rendered (and downloaded) while open.
+	let viewerIndex = $state<number | null>(null);
 
 	function showPhoto(index: number) {
 		viewerIndex = index;
-		viewerOpen = true;
 		if (!viewer?.open) viewer?.showModal();
 	}
 
 	function step(delta: number) {
-		viewerIndex = (viewerIndex + delta + photos.length) % photos.length;
+		if (viewerIndex !== null) viewerIndex = (viewerIndex + delta + photos.length) % photos.length;
 	}
 
 	function onViewerKey(event: KeyboardEvent) {
@@ -49,30 +48,30 @@
 <dialog
 	bind:this={viewer}
 	onkeydown={onViewerKey}
-	onclose={() => (viewerOpen = false)}
+	onclose={() => (viewerIndex = null)}
 	onclick={(event) => event.target === viewer && viewer?.close()}
 	aria-label="Photo agrandie"
 	class="m-auto h-dvh max-h-none w-dvw max-w-none bg-transparent p-0 backdrop:bg-ink/90"
 >
-	<div class="pointer-events-none flex h-full flex-col items-center justify-center gap-3 p-4">
-		{#if viewerOpen}
+	{#if viewerIndex !== null}
+		<div class="pointer-events-none flex h-full flex-col items-center justify-center gap-3 p-4">
 			<img
 				src={photos[viewerIndex].fullUrl}
 				alt="Photo {viewerIndex + 1} sur {photos.length} de {edition.title}"
 				class="pointer-events-auto max-h-[80dvh] max-w-full border-4 border-white object-contain shadow-sketch"
 			/>
-		{/if}
-		<div class="pointer-events-auto flex items-center gap-3">
-			<Button size="nav" variant="paper" onclick={() => step(-1)}>
-				<span aria-hidden="true">←</span><span class="sr-only">Photo précédente</span>
-			</Button>
-			<p class="min-w-24 text-center text-xl text-white" aria-live="polite">
-				{viewerIndex + 1} / {photos.length}
-			</p>
-			<Button size="nav" variant="paper" onclick={() => step(1)}>
-				<span aria-hidden="true">→</span><span class="sr-only">Photo suivante</span>
-			</Button>
-			<Button size="nav" variant="pink" onclick={() => viewer?.close()}>Fermer</Button>
+			<div class="pointer-events-auto flex items-center gap-3">
+				<Button size="nav" variant="paper" onclick={() => step(-1)}>
+					<span aria-hidden="true">←</span><span class="sr-only">Photo précédente</span>
+				</Button>
+				<p class="min-w-24 text-center text-xl text-white" aria-live="polite">
+					{viewerIndex + 1} / {photos.length}
+				</p>
+				<Button size="nav" variant="paper" onclick={() => step(1)}>
+					<span aria-hidden="true">→</span><span class="sr-only">Photo suivante</span>
+				</Button>
+				<Button size="nav" variant="pink" onclick={() => viewer?.close()}>Fermer</Button>
+			</div>
 		</div>
-	</div>
+	{/if}
 </dialog>

@@ -122,18 +122,15 @@
 					{#if errors?.message}<span class={errorText}>{errors.message}</span>{/if}
 				</label>
 
-				<!-- Honeypot: hidden from people, bots fill it in and get silently dropped. -->
-				<div class="hidden" aria-hidden="true">
-					<label>
-						Ne pas remplir
-						<input type="text" name="website" tabindex="-1" autocomplete="off" />
-					</label>
-				</div>
+				<!-- Honeypot: hidden from people (display: none), bots fill it in and get silently dropped. -->
+				<label class="hidden">
+					Ne pas remplir
+					<input type="text" name="website" tabindex="-1" autocomplete="off" />
+				</label>
 
 				{#if requestFailed || (form && 'sendFailed' in form)}
 					<p class={errorText} role="alert">
 						Oups, le pigeon s'est perdu… Réessaie dans un instant ou écris-nous directement à
-						<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- mailto link, not an app route -->
 						<a href="mailto:{PUBLIC_CONTACT_EMAIL}" class="underline">{PUBLIC_CONTACT_EMAIL}</a>.
 					</p>
 				{/if}
@@ -179,7 +176,8 @@
 
 	@media (prefers-reduced-motion: no-preference) {
 		.bird {
-			animation: bird-bob 1.4s ease-in-out infinite;
+			--bob-to: translateY(-3px);
+			animation: bob 1.4s ease-in-out infinite;
 		}
 		.wing {
 			animation: wing-flap 0.3s ease-in-out infinite alternate;
@@ -187,16 +185,6 @@
 		/* While the message is being sent, the bird takes off. */
 		.bird--away {
 			animation: bird-away 0.9s ease-in infinite;
-		}
-	}
-
-	@keyframes bird-bob {
-		0%,
-		100% {
-			transform: translateY(0);
-		}
-		50% {
-			transform: translateY(-3px);
 		}
 	}
 

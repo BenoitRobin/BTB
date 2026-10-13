@@ -23,11 +23,11 @@
 >
 	<div class="flex min-w-0 flex-col items-start gap-6 md:flex-[3]">
 		<p class="-rotate-2 text-2xl">
-			Hello, je m'appelle Robert <span class="bob-arrow" aria-hidden="true">↓</span>
+			Hello, je m'appelle Robert <span class="bob-arrow inline-block" aria-hidden="true">↓</span>
 		</p>
-		<h1 class="text-5xl leading-[0.95] md:text-5xl lg:text-6xl">
+		<h1 class="text-5xl leading-[0.95] lg:text-6xl">
 			{#each titleWords as word, i (i)}<span
-					class={['title-word', word.highlight && 'highlight']}
+					class={['title-word inline-block', word.highlight && 'highlight']}
 					style="--arrival: {arrival(i)}">{word.text}{word.glue ? '\u00a0' : ''}</span
 				>{word.glue ? '' : ' '}{/each}
 		</h1>
@@ -59,18 +59,14 @@
 			class="cloud-in absolute top-[12%] -left-4 z-10 w-60 -rotate-[4deg] drop-shadow-[3px_4px_0_var(--color-ink)] md:-left-14 md:w-72"
 		/>
 		<figcaption class="absolute -right-1 -bottom-6 -rotate-3 text-xl">
-			<span class="bob-arrow bob-arrow--diagonal" aria-hidden="true">↖</span> lui, c'est Bob !
+			<span class="bob-arrow bob-arrow--diagonal inline-block" aria-hidden="true">↖</span> lui, c'est
+			Bob !
 		</figcaption>
 	</figure>
 </section>
 
 <style>
-	.title-word {
-		display: inline-block;
-	}
-
 	.bob-arrow {
-		display: inline-block;
 		--bob-to: translateY(5px);
 	}
 
@@ -82,7 +78,8 @@
 
 	@media (prefers-reduced-motion: no-preference) {
 		.title-word {
-			animation: word-in 450ms cubic-bezier(0.34, 1.4, 0.64, 1) calc(var(--arrival) * 110ms) both;
+			--slide-from: -30px;
+			animation: slide-in 450ms cubic-bezier(0.34, 1.4, 0.64, 1) calc(var(--arrival) * 110ms) both;
 		}
 
 		/* Marker stroke once the whole sentence is in (last word lands at 7 × 110 + 450 ms), one highlighted word after the other. */
@@ -90,7 +87,7 @@
 			--marker-step: 0;
 			background-repeat: no-repeat;
 			animation:
-				word-in 450ms cubic-bezier(0.34, 1.4, 0.64, 1) calc(var(--arrival) * 110ms) both,
+				slide-in 450ms cubic-bezier(0.34, 1.4, 0.64, 1) calc(var(--arrival) * 110ms) both,
 				marker 250ms ease-in calc(1300ms + var(--marker-step) * 250ms) both;
 		}
 
@@ -181,14 +178,16 @@
 		}
 
 		.cloud-in {
-			animation: cloud-in 900ms cubic-bezier(0.34, 1.4, 0.64, 1) 1350ms both;
+			--slide-from: -40px;
+			animation: slide-in 900ms cubic-bezier(0.34, 1.4, 0.64, 1) 1350ms both;
 		}
 	}
 
-	@keyframes word-in {
+	/* Fades in from --slide-from to the left (title words, date cloud). */
+	@keyframes slide-in {
 		from {
 			opacity: 0;
-			translate: -30px 0;
+			translate: var(--slide-from) 0;
 		}
 		to {
 			opacity: 1;
@@ -202,27 +201,6 @@
 		}
 		to {
 			background-size: 100% 100%;
-		}
-	}
-
-	@keyframes cloud-in {
-		from {
-			translate: -40px 0;
-			opacity: 0;
-		}
-		to {
-			translate: 0 0;
-			opacity: 1;
-		}
-	}
-
-	@keyframes bob {
-		0%,
-		100% {
-			transform: translateY(0);
-		}
-		50% {
-			transform: var(--bob-to);
 		}
 	}
 </style>

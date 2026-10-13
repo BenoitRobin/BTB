@@ -19,11 +19,7 @@
 			>
 			<div class="hidden items-center gap-8 whitespace-nowrap lg:flex xl:gap-10">
 				{#each links as link (link.id)}
-					<a
-						href="{resolve('/')}#{link.id}"
-						class="border-b-2 border-dashed border-ink hover:border-solid hover:highlight"
-						>{link.label}</a
-					>
+					<a href="{resolve('/')}#{link.id}" class="sketch-link hover:highlight">{link.label}</a>
 				{/each}
 				<Button href="/#contact" size="nav">Contact</Button>
 			</div>
@@ -49,10 +45,8 @@
 		{#if menuOpen}
 			<div class="mt-4 flex flex-col items-start gap-4 pb-3 lg:hidden">
 				{#each links as link (link.id)}
-					<a
-						href="{resolve('/')}#{link.id}"
-						class="border-b-2 border-dashed border-ink"
-						onclick={() => (menuOpen = false)}>{link.label}</a
+					<a href="{resolve('/')}#{link.id}" class="sketch-link" onclick={() => (menuOpen = false)}
+						>{link.label}</a
 					>
 				{/each}
 				<Button href="/#contact" size="nav">Contact</Button>
