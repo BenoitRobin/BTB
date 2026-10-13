@@ -32,6 +32,9 @@
 				<!-- eslint-enable svelte/no-navigation-without-resolve -->
 			</li>
 		{/each}
+		<li class="self-end px-1 font-display text-4xl leading-none">
+			<span aria-hidden="true">…</span><span class="sr-only">et bien d'autres</span>
+		</li>
 	</ul>
 </section>
 
