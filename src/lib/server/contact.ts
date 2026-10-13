@@ -1,6 +1,5 @@
 import { env } from '$env/dynamic/private';
-
-export const CONTACT_TYPES = ['Fanfaron', 'Bénévole'] as const;
+import { CONTACT_TYPES } from '$lib/data/contact';
 
 /** Shown to the visitor only when sending fails, so they still have a way to reach us. */
 export const PUBLIC_CONTACT_EMAIL = 'contact@bougetonbouble.fr';

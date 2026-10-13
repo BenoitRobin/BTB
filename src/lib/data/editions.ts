@@ -36,3 +36,6 @@ export const otherEditions: Edition[] = [
 		lightroomAlbumId: '269aa83af34b471f9b67d1038ecf0ec7'
 	}
 ];
+
+/** Every edition, most recent first. */
+export const editions = [mainEdition, ...otherEditions];

@@ -5,13 +5,11 @@
 	import EditionGallery from '$lib/components/EditionGallery.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import ScrollToTop from '$lib/components/ScrollToTop.svelte';
-	import { mainEdition, otherEditions } from '$lib/data/editions';
+	import { editions } from '$lib/data/editions';
 
 	let { data } = $props();
 	const { edition, photos } = $derived(data);
-	const otherAlbums = $derived(
-		[mainEdition, ...otherEditions].filter((e) => e.slug !== edition.slug)
-	);
+	const otherAlbums = $derived(editions.filter((e) => e.slug !== edition.slug));
 </script>
 
 <svelte:head>

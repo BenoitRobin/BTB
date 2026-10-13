@@ -17,15 +17,26 @@
 		return text.length > 100 ? `${text.slice(0, 100)}…` : text;
 	}
 
-	// The clip autoplays like a looping GIF; honour reduced motion by leaving it paused on its first frame.
-	function respectReducedMotion(node: HTMLVideoElement) {
-		if (matchMedia('(prefers-reduced-motion: reduce)').matches) node.pause();
+	// The ~7 MB clip only downloads and plays while it is on screen (preload="none", no autoplay).
+	// With reduced motion it never starts by itself: it just shows its first frame until sound is asked for.
+	function playWhenVisible(node: HTMLVideoElement) {
+		if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			node.preload = 'metadata';
+			return;
+		}
+		const observer = new IntersectionObserver(([entry]) => {
+			// play() rejects if the browser blocks it; the video then simply stays paused.
+			if (entry.isIntersecting) node.play().catch(() => {});
+			else node.pause();
+		});
+		observer.observe(node);
+		return () => observer.disconnect();
 	}
 
 	function toggleSound() {
 		muted = !muted;
 		// Asking for sound is an explicit request to watch, even if reduced motion kept it paused.
-		if (!muted && video.paused) video.play();
+		if (!muted && video.paused) video.play().catch(() => {});
 	}
 </script>
 
@@ -76,13 +87,13 @@
 			<video
 				bind:this={video}
 				src={videoSrc}
-				autoplay
+				preload="none"
 				{muted}
 				loop
 				playsinline
 				aria-label="Vidéo du festival Bouge Ton Bouble"
 				class="block aspect-[9/16] w-full bg-ink object-cover"
-				{@attach respectReducedMotion}
+				{@attach playWhenVisible}
 			></video>
 
 			<button

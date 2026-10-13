@@ -3,11 +3,9 @@
 	import Button from './Button.svelte';
 	import SectionHeading from './SectionHeading.svelte';
 	import type { ActionData } from '../../routes/$types';
+	import { CONTACT_TYPES } from '$lib/data/contact';
 
 	let { form }: { form: ActionData } = $props();
-
-	// Same list as CONTACT_TYPES in $lib/server/contact.ts, which the server validates against.
-	const types = ['Fanfaron', 'Bénévole'];
 
 	let sending = $state(false);
 	const values = $derived(form && 'values' in form ? form.values : undefined);
@@ -51,7 +49,7 @@
 				<fieldset class="flex flex-col gap-2">
 					<legend class="mb-2">Tu es…</legend>
 					<div class="flex flex-wrap gap-3">
-						{#each types as type, i (type)}
+						{#each CONTACT_TYPES as type, i (type)}
 							<label
 								class={[
 									'cursor-pointer bg-white px-4 py-1 transition-colors has-checked:bg-sky has-focus-visible:outline-3 has-focus-visible:outline-offset-3 has-focus-visible:outline-sky-ink has-focus-visible:outline-dashed',

@@ -1,10 +1,10 @@
 import { error, redirect } from '@sveltejs/kit';
-import { mainEdition, otherEditions } from '$lib/data/editions';
+import { editions } from '$lib/data/editions';
 import { getAlbumPhotos } from '$lib/server/lightroom';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params, fetch, setHeaders }) => {
-	const edition = [mainEdition, ...otherEditions].find((e) => e.slug === params.slug);
+	const edition = editions.find((e) => e.slug === params.slug);
 	if (!edition) error(404, 'Édition introuvable');
 
 	const photos = await getAlbumPhotos(fetch, edition.lightroomSpaceId, edition.lightroomAlbumId);
