@@ -11,7 +11,7 @@
 	import ScrollToTop from '$lib/components/ScrollToTop.svelte';
 	import Instagram from '$lib/components/Instagram.svelte';
 
-	let { data } = $props();
+	let { data, form } = $props();
 </script>
 
 <svelte:head>
@@ -32,7 +32,7 @@
 	<PastEditions />
 	<PastBands />
 	<Partners />
-	<ContactForm />
+	<ContactForm {form} />
 </main>
 
 <Footer />
