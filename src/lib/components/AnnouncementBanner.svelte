@@ -8,7 +8,7 @@
 		<div class="marquee__track flex w-max items-center whitespace-nowrap">
 			{#each [false, true] as hidden}
 				<span
-					class="banner-text flex items-center font-display text-2xl tracking-wide text-white sm:text-3xl md:text-4xl"
+					class="flex items-center font-display text-2xl tracking-wide text-ink sm:text-3xl md:text-4xl"
 					aria-hidden={hidden || undefined}
 				>
 					{#each { length: 6 } as _}
@@ -24,11 +24,6 @@
 </div>
 
 <style>
-	.banner-text {
-		-webkit-text-stroke: 1px var(--color-ink);
-		paint-order: stroke fill;
-	}
-
 	.marquee__track {
 		animation: marquee 80s linear infinite;
 	}

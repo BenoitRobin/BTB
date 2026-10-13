@@ -30,6 +30,11 @@
 			alt="Bob, la mascotte du festival, de dos face au village de Chantelle"
 			class="block h-auto w-full rotate-2 border-2 border-ink bg-white p-2.5"
 		/>
+		<p
+			class="absolute top-[55%] -left-3 z-10 -rotate-[4deg] sketch bg-pink px-4 pt-1.5 pb-1 font-display text-2xl leading-tight shadow-sketch"
+		>
+			BTB#9<br />29 mai 2027
+		</p>
 		<figcaption class="absolute -right-1 -bottom-6 -rotate-3 text-xl">
 			↖ Bob, notre mascotte
 		</figcaption>
