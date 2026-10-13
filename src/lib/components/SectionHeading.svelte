@@ -30,15 +30,16 @@
 			stroke-width="5"
 			stroke-linecap="round"
 			pathLength="1"
-			stroke-dasharray="1"
+			stroke-dasharray="1 2"
 		/>
 	</svg>
 </div>
 
 <style>
 	@media (prefers-reduced-motion: no-preference) {
+		/* Slightly past 1 so the zero-length dash (and its round cap dot) sits off the path. */
 		.armed path {
-			stroke-dashoffset: 1;
+			stroke-dashoffset: 1.05;
 		}
 		/* Drawn like a pen stroke once the heading is on screen. */
 		.shown path {
@@ -48,7 +49,7 @@
 
 	@keyframes draw {
 		from {
-			stroke-dashoffset: 1;
+			stroke-dashoffset: 1.05;
 		}
 		to {
 			stroke-dashoffset: 0;
