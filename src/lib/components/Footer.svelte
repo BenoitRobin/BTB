@@ -1,15 +1,15 @@
 <script lang="ts"></script>
 
-<footer class="bg-black px-5 py-10 text-center text-white">
-	<div class="mx-auto max-w-6xl">
-		<h3 class="mb-2 text-xl font-semibold">Festival Bouge Ton Bouble</h3>
-		<div class="mb-16 flex justify-center gap-3">
+<footer class="mx-auto max-w-6xl px-6 pb-10 text-center">
+	<div class="border-t-2 border-dashed border-ink pt-8">
+		<h3 class="mb-3 font-display text-2xl">Festival Bouge Ton Bouble</h3>
+		<div class="mb-8 flex justify-center gap-4">
 			<a
 				href="https://www.facebook.com/festivalbougetonbouble"
 				target="_blank"
 				rel="noreferrer"
 				aria-label="Facebook"
-				class="text-white"
+				class="text-ink hover:text-sky-ink"
 			>
 				<svg viewBox="0 0 24 24" fill="currentColor" class="h-8 w-8">
 					<path
@@ -22,7 +22,7 @@
 				target="_blank"
 				rel="noreferrer"
 				aria-label="Instagram"
-				class="text-white"
+				class="text-ink hover:text-sky-ink"
 			>
 				<svg
 					viewBox="0 0 24 24"

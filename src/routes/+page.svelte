@@ -11,7 +11,11 @@
 </script>
 
 <svelte:head>
-	<title>Bouge Ton Bouble</title>
+	<title>Bouge Ton Bouble · BTB#9 le 29 mai 2027</title>
+	<meta
+		name="description"
+		content="Festival de fanfares à Chantelle, dans l'Allier. Prochaine édition BTB#9 le samedi 29 mai 2027 : fanfares et bénévoles, écrivez-nous !"
+	/>
 </svelte:head>
 
 <Navbar />

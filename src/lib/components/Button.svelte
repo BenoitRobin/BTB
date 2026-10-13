@@ -5,30 +5,37 @@
 		href,
 		type = 'button',
 		size = 'default',
+		variant = 'sky',
 		onclick,
 		children
 	}: {
 		href?: string;
 		type?: 'button' | 'submit';
 		size?: 'default' | 'nav';
+		variant?: 'sky' | 'pink' | 'paper';
 		onclick?: () => void;
 		children: Snippet;
 	} = $props();
 
 	const base =
-		'inline-flex items-center justify-center rounded-[10px] border border-black bg-black font-medium text-white transition-colors hover:bg-white hover:text-black';
+		'sketch inline-flex items-center justify-center text-ink shadow-sketch transition-transform hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-none';
 	const sizes = {
-		default: 'px-10 py-3.5 text-xl md:text-2xl',
-		nav: 'px-6 py-2.5 text-lg'
+		default: 'px-7 py-3 text-2xl',
+		nav: 'px-5 py-1.5 text-xl'
+	};
+	const variants = {
+		sky: 'bg-sky',
+		pink: 'bg-pink',
+		paper: 'bg-white'
 	};
 </script>
 
 {#if href}
-	<a {href} class="{base} {sizes[size]}">
+	<a {href} class="{base} {sizes[size]} {variants[variant]}">
 		{@render children()}
 	</a>
 {:else}
-	<button {type} {onclick} class="{base} {sizes[size]}">
+	<button {type} {onclick} class="{base} {sizes[size]} {variants[variant]}">
 		{@render children()}
 	</button>
 {/if}
