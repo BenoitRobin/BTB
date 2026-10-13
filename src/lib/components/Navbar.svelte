@@ -6,7 +6,7 @@
 
 	const links = [
 		{ id: 'c-est-quoi', label: "C'est quoi ?" },
-		{ id: 'editions', label: 'Les éditions' },
+		{ id: 'editions', label: "C'était comment ?" },
 		{ id: 'partenaires', label: 'Partenaires' }
 	];
 </script>
@@ -17,10 +17,10 @@
 			<a href={resolve('/')} class="font-display text-2xl leading-none lg:text-4xl"
 				>Bouge Ton Bouble</a
 			>
-			<div class="hidden items-center gap-8 sm:flex md:gap-10">
+			<div class="hidden items-center gap-8 whitespace-nowrap lg:flex xl:gap-10">
 				{#each links as link (link.id)}
 					<a
-						href="#{link.id}"
+						href="{resolve('/')}#{link.id}"
 						class="border-b-2 border-dashed border-ink hover:border-solid hover:highlight"
 						>{link.label}</a
 					>
@@ -32,7 +32,7 @@
 				aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
 				aria-expanded={menuOpen}
 				onclick={() => (menuOpen = !menuOpen)}
-				class="flex h-11 w-11 flex-col items-center justify-center gap-1.5 sm:hidden"
+				class="flex h-11 w-11 flex-col items-center justify-center gap-1.5 lg:hidden"
 			>
 				<span
 					class="h-0.5 w-6 bg-ink transition-transform {menuOpen ? 'translate-y-2 rotate-45' : ''}"
@@ -47,10 +47,10 @@
 		</div>
 
 		{#if menuOpen}
-			<div class="mt-4 flex flex-col items-start gap-4 pb-3 sm:hidden">
+			<div class="mt-4 flex flex-col items-start gap-4 pb-3 lg:hidden">
 				{#each links as link (link.id)}
 					<a
-						href="#{link.id}"
+						href="{resolve('/')}#{link.id}"
 						class="border-b-2 border-dashed border-ink"
 						onclick={() => (menuOpen = false)}>{link.label}</a
 					>
