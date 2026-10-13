@@ -38,7 +38,7 @@
 			fanfares avec nous !
 		</p>
 		<div>
-			<Button href="/#contact-form">Ta fanfare veut venir ?</Button>
+			<Button href="/#contact">Ta fanfare veut venir ?</Button>
 		</div>
 	</div>
 </section>

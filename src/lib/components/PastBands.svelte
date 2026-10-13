@@ -12,7 +12,7 @@
 </script>
 
 <section class="mx-auto mt-20 w-full max-w-6xl px-6">
-	<SectionHeading id="past-bands" title="Ils sont venus !" />
+	<SectionHeading id="fanfares" title="Ils sont venus !" />
 
 	<ul class="mt-8 flex flex-wrap gap-x-4 gap-y-3.5">
 		{#each pastBands as band, i (band.name)}

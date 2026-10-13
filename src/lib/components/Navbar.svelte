@@ -25,7 +25,7 @@
 						>{link.label}</a
 					>
 				{/each}
-				<Button href="/#contact-form" size="nav">Contact</Button>
+				<Button href="/#contact" size="nav">Contact</Button>
 			</div>
 			<button
 				type="button"
@@ -55,7 +55,7 @@
 						onclick={() => (menuOpen = false)}>{link.label}</a
 					>
 				{/each}
-				<Button href="/#contact-form" size="nav">Contact</Button>
+				<Button href="/#contact" size="nav">Contact</Button>
 			</div>
 		{/if}
 	</nav>

@@ -24,7 +24,7 @@
 
 <section class="mx-auto mt-20 flex w-full max-w-6xl flex-col gap-10 px-6 pb-20 md:flex-row">
 	<div class="min-w-0 md:flex-1">
-		<SectionHeading id="contact-form" title="Fanfare ou bénévole, écris-nous !" />
+		<SectionHeading id="contact" title="Fanfare ou bénévole, écris-nous !" />
 		<p class="mt-6 max-w-[40ch]">
 			Tu fais partie d'une fanfare et tu veux postuler pour la prochaine édition ? Ou tu veux donner
 			un coup de main et devenir bénévole pendant tout un week-end ? Laisse-nous un message et on

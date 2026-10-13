@@ -35,8 +35,8 @@
 			Des fanfares plein les rues de Chantelle. Viendez nous retrouver !
 		</p>
 		<div class="flex flex-wrap gap-4">
-			<Button href="/#contact-form" variant="pink">Ta fanfare veut venir ?</Button>
-			<Button href="/#contact-form" variant="paper">Devenir bénévole</Button>
+			<Button href="/#contact" variant="pink">Ta fanfare veut venir ?</Button>
+			<Button href="/#contact" variant="paper">Devenir bénévole</Button>
 		</div>
 	</div>
 
