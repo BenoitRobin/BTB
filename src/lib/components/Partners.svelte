@@ -3,12 +3,10 @@
 	import { partners } from '$lib/data/partners';
 </script>
 
-<section class="mt-16">
-	<div class="mx-auto w-full max-w-6xl px-6">
-		<SectionHeading id="skills" title="Partenaires" />
-	</div>
+<section class="mx-auto mt-20 w-full max-w-6xl px-6">
+	<SectionHeading id="skills" title="Partenaires" />
 
-	<div class="partners-marquee mx-auto mt-8 mb-16 w-full max-w-6xl overflow-hidden px-6">
+	<div class="partners-marquee mt-8 overflow-hidden sketch-alt bg-white py-6">
 		<div class="partners-marquee__track flex w-max items-center">
 			{#each [false, true] as hidden}
 				<div class="flex items-center" aria-hidden={hidden || undefined}>

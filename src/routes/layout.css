@@ -1,9 +1,59 @@
 @import 'tailwindcss';
 
+@theme {
+	--color-ink: #222222;
+	--color-paper: #f4f2ec;
+	--color-pencil: #6b6861;
+	--color-dots: #bdbab2;
+	--color-sky: #2babe2;
+	--color-sky-ink: #1b7fab;
+	--color-pink: #ec7e89;
+	--color-grass: #1ca438;
+	--color-earth: #af7f49;
+
+	--font-hand: 'Patrick Hand', 'Comic Sans MS', cursive;
+	--font-display: 'Baloo 2', sans-serif;
+
+	--shadow-sketch: 3px 4px 0 var(--color-ink);
+}
+
+/* Hand-drawn borders in the PaperCSS style: uneven elliptical corners make a straight box look traced by hand. */
+@utility sketch {
+	border: 2px solid var(--color-ink);
+	border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+
+@utility sketch-alt {
+	border: 2px solid var(--color-ink);
+	border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
+}
+
+@utility highlight {
+	background: linear-gradient(
+		transparent 55%,
+		color-mix(in srgb, var(--color-sky) 55%, transparent) 55%,
+		color-mix(in srgb, var(--color-sky) 55%, transparent) 90%,
+		transparent 90%
+	);
+}
+
 @layer base {
 	body {
-		font-family: 'Inter Tight', sans-serif;
+		font-family: var(--font-hand);
+		font-size: 1.3125rem;
+		line-height: 1.5;
+		color: var(--color-ink);
+		background-color: var(--color-paper);
+		background-image: radial-gradient(var(--color-dots) 1.1px, transparent 1.4px);
+		background-size: 24px 24px;
 		-webkit-tap-highlight-color: transparent;
+	}
+
+	h1,
+	h2 {
+		font-family: var(--font-display);
+		font-weight: 800;
+		text-wrap: balance;
 	}
 
 	a {
@@ -13,5 +63,10 @@
 
 	button {
 		cursor: pointer;
+	}
+
+	:focus-visible {
+		outline: 3px dashed var(--color-sky-ink);
+		outline-offset: 3px;
 	}
 }

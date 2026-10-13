@@ -5,63 +5,36 @@
 	import placeholder2025 from '$lib/assets/placeholder/placeholder2025.png';
 	import placeholder2024 from '$lib/assets/placeholder/placeholder2024.png';
 
-	const editionImages = [placeholder2025, placeholder2024];
+	const editions = [
+		{ ...mainEdition, image: placeholder2026 },
+		...otherEditions.map((edition, i) => ({
+			...edition,
+			image: [placeholder2025, placeholder2024][i]
+		}))
+	];
+	const tilts = ['-rotate-1', 'rotate-1', '-rotate-[0.5deg]'];
 </script>
 
-<section class="mt-16">
-	<div class="mx-auto w-full max-w-6xl px-6">
-		<SectionHeading id="my-work" title="Comment c'était avant ?" />
-	</div>
+<section class="mx-auto mt-20 w-full max-w-6xl px-6">
+	<SectionHeading id="my-work" title="Comment c'était avant ?" />
 
-	<div class="mx-auto mt-8 mb-16 w-full max-w-6xl px-6">
-		<a href={mainEdition.galleryUrl} target="_blank" rel="noreferrer" class="group mb-8 block">
-			<img
-				src={placeholder2026}
-				alt={mainEdition.title}
-				class="aspect-video w-full rounded-2xl object-cover grayscale-0 transition-all group-hover:grayscale"
-			/>
-		</a>
-		<div class="mt-4 flex items-center justify-between">
-			<div>
-				<h3 class="text-2xl font-semibold">{mainEdition.title}</h3>
-				<p class="text-[#5e5e5e]">{mainEdition.year}</p>
-			</div>
+	<div class="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+		{#each editions as edition, i (edition.slug)}
 			<a
-				href={mainEdition.galleryUrl}
+				href={edition.galleryUrl}
 				target="_blank"
 				rel="noreferrer"
-				class="block rounded-full border border-black px-6 text-3xl leading-[1.8]"
+				class="group block border-2 border-ink bg-white p-3 pb-2 shadow-sketch transition-transform hover:rotate-0 {tilts[
+					i % tilts.length
+				]}"
 			>
-				→
+				<img
+					src={edition.image}
+					alt="Photos de l'édition {edition.title}"
+					class="aspect-[4/3] w-full object-cover grayscale-0 transition-all group-hover:grayscale"
+				/>
+				<p class="mt-2 text-center text-2xl">{edition.title} · {edition.year} →</p>
 			</a>
-		</div>
-
-		<div class="mt-10 flex flex-wrap justify-between gap-6">
-			{#each otherEditions as edition, i (edition.slug)}
-				<article class="w-full sm:w-[48%]">
-					<a href={edition.galleryUrl} target="_blank" rel="noreferrer" class="group block">
-						<img
-							src={editionImages[i]}
-							alt={edition.title}
-							class="h-[300px] w-full rounded-2xl object-cover grayscale-0 transition-all group-hover:grayscale"
-						/>
-					</a>
-					<div class="mt-3 flex items-center justify-between">
-						<div>
-							<h3 class="font-semibold">{edition.title}</h3>
-							<p class="text-[#5e5e5e]">{edition.year}</p>
-						</div>
-						<a
-							href={edition.galleryUrl}
-							target="_blank"
-							rel="noreferrer"
-							class="block rounded-full border border-black px-4 text-xl leading-[1.8]"
-						>
-							→
-						</a>
-					</div>
-				</article>
-			{/each}
-		</div>
+		{/each}
 	</div>
 </section>

@@ -18,51 +18,42 @@
 
 		submitted = true;
 	}
+
+	const field = 'border-0 border-b-2 border-ink bg-transparent px-0.5 py-1.5 outline-none';
 </script>
 
-<section class="mt-16 pb-24">
-	<div class="mx-auto w-full max-w-6xl px-6">
-		<SectionHeading id="contact-form" title="Envoie nous un message" />
+<section class="mx-auto mt-20 flex w-full max-w-6xl flex-col gap-10 px-6 pb-20 md:flex-row">
+	<div class="min-w-0 md:flex-1">
+		<SectionHeading id="contact-form" title="Fanfare ou bénévole, écris-nous !" />
+		<p class="mt-6 max-w-[40ch]">
+			Tu fais partie d'une fanfare et tu veux postuler pour la prochaine édition ? Ou tu veux donner
+			un coup de main et devenir bénévole pendant tout un week-end ? Laisse-nous un message et on
+			revient vers toi rapidement.
+		</p>
 	</div>
 
-	<div
-		class="mx-auto mt-8 flex w-full max-w-6xl flex-col gap-10 px-6 md:flex-row md:justify-between"
-	>
-		<div class="flex w-full flex-col items-start md:w-[45%]">
-			{#if submitted}
-				<p class="text-lg font-semibold">Merci, on te répond aussi vite qu'un fanfaron le peut !</p>
-			{:else}
-				<form onsubmit={handleSubmit} class="flex w-full flex-col items-start">
-					<input
-						type="text"
-						bind:value={name}
-						placeholder="qui es-tu donc ?"
-						class="mb-6 h-12 w-full rounded-lg bg-black/[0.035] px-3 text-lg outline-none placeholder:font-normal"
-					/>
-					<input
-						type="email"
-						bind:value={email}
-						placeholder="Ton adresse électronique"
-						class="mb-6 h-12 w-full rounded-lg bg-black/[0.035] px-3 text-lg outline-none placeholder:font-normal"
-					/>
-					<textarea
-						bind:value={message}
-						placeholder="Donne nous envie de t'inviter..."
-						class="mb-10 h-32 w-full rounded-lg bg-black/[0.035] px-3 py-2 text-lg outline-none placeholder:font-normal"
+	<div class="min-w-0 sketch-alt bg-white p-7 md:flex-1">
+		{#if submitted}
+			<p class="text-2xl">Merci, on te répond aussi vite qu'un fanfaron le peut !</p>
+		{:else}
+			<form onsubmit={handleSubmit} class="flex flex-col gap-5">
+				<label class="flex flex-col gap-1">
+					Qui es-tu donc ?
+					<input type="text" bind:value={name} autocomplete="name" class={field} />
+				</label>
+				<label class="flex flex-col gap-1">
+					Ton adresse électronique
+					<input type="email" bind:value={email} autocomplete="email" class={field} />
+				</label>
+				<label class="flex flex-col gap-1">
+					Donne-nous envie de t'inviter…
+					<textarea bind:value={message} rows="4" class="sketch-alt bg-transparent p-2 outline-none"
 					></textarea>
+				</label>
+				<div>
 					<Button type="submit">Va petit oiseau, porte ce message</Button>
-				</form>
-			{/if}
-		</div>
-
-		<div class="w-full md:w-[39%]">
-			<h3 class="mb-2 text-2xl font-bold">Fanfare ou bénévole, écris-nous !</h3>
-			<p>
-				Tu fais partie d'une fanfare et tu veux postuler pour la prochaine édition ? Ou tu es plutôt
-				du genre à donner un coup de main et tu veux devenir bénévole pour participer à cette fête
-				pendant tout un week-end ? Dans tous les cas, on a hâte de te lire ! Laisse-nous un message
-				et on revient vers toi rapidement pour la suite.
-			</p>
-		</div>
+				</div>
+			</form>
+		{/if}
 	</div>
 </section>
