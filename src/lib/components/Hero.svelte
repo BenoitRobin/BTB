@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from './Button.svelte';
 	import bobImg from '$lib/assets/bob.png';
+	import cloudDateImg from '$lib/assets/cloudDate.svg';
 </script>
 
 <section
@@ -30,11 +31,11 @@
 			alt="Bob, la mascotte du festival, de dos face au village de Chantelle"
 			class="block h-auto w-full rotate-2 border-2 border-ink bg-white p-2.5"
 		/>
-		<p
-			class="absolute top-[55%] -left-3 z-10 -rotate-[4deg] sketch bg-pink px-4 pt-1.5 pb-1 font-display text-2xl leading-tight shadow-sketch"
-		>
-			BTB#9<br />29 mai 2027
-		</p>
+		<img
+			src={cloudDateImg}
+			alt="BTB#9, le 29 mai 2027"
+			class="absolute top-[12%] -left-4 z-10 w-60 -rotate-[4deg] drop-shadow-[3px_4px_0_var(--color-ink)] md:-left-14 md:w-72"
+		/>
 		<figcaption class="absolute -right-1 -bottom-6 -rotate-3 text-xl">
 			↖ lui, c'est Bob !
 		</figcaption>
