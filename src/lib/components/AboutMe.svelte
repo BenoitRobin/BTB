@@ -30,7 +30,8 @@
 		</p>
 		<ul class="flex flex-wrap gap-x-7 gap-y-2">
 			{#each facts as fact (fact)}
-				<li>☑ {fact}</li>
+				<!-- &#xFE0E; = text glyph, otherwise iOS shows ☑ as a colour emoji. -->
+				<li>☑&#xFE0E; {fact}</li>
 			{/each}
 		</ul>
 		<p>

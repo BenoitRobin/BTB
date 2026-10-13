@@ -59,8 +59,8 @@
 			class="cloud-in absolute top-[12%] -left-4 z-10 w-60 -rotate-[4deg] drop-shadow-[3px_4px_0_var(--color-ink)] md:-left-14 md:w-72"
 		/>
 		<figcaption class="absolute -right-1 -bottom-6 -rotate-3 text-xl">
-			<span class="bob-arrow bob-arrow--diagonal inline-block" aria-hidden="true">↖</span> lui, c'est
-			Bob !
+			<span class="bob-arrow bob-arrow--diagonal inline-block" aria-hidden="true">↖&#xFE0E;</span> lui,
+			c'est Bob !
 		</figcaption>
 	</figure>
 </section>
