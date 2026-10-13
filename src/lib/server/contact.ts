@@ -1,6 +1,6 @@
 import { env } from '$env/dynamic/private';
 
-export const CONTACT_TYPES = ['Fanfare', 'Bénévole', 'Autre'] as const;
+export const CONTACT_TYPES = ['Fanfaron', 'Bénévole'] as const;
 
 /** Shown to the visitor only when sending fails, so they still have a way to reach us. */
 export const PUBLIC_CONTACT_EMAIL = 'contact@bougetonbouble.fr';
@@ -21,7 +21,7 @@ export function validateContact(formData: FormData) {
 
 	const errors: ContactErrors = {};
 	if (!(CONTACT_TYPES as readonly string[]).includes(values.type)) {
-		errors.type = 'Dis-nous si tu es une fanfare, un·e bénévole ou autre chose.';
+		errors.type = 'Dis-nous si tu es fanfaron ou bénévole.';
 	}
 	if (!values.name) errors.name = 'Comment tu t’appelles ?';
 	else if (values.name.length > 100) errors.name = 'Un peu long, ce nom (100 caractères max).';

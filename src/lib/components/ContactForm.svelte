@@ -7,11 +7,14 @@
 	let { form }: { form: ActionData } = $props();
 
 	// Same list as CONTACT_TYPES in $lib/server/contact.ts, which the server validates against.
-	const types = ['Fanfare', 'Bénévole', 'Autre'];
+	const types = ['Fanfaron', 'Bénévole'];
 
 	let sending = $state(false);
 	const values = $derived(form && 'values' in form ? form.values : undefined);
 	const errors = $derived(form && 'errors' in form ? form.errors : undefined);
+
+	// Drives the message prompt; starts from what the server sent back after a failed submit.
+	let selectedType = $derived(values?.type ?? '');
 
 	const field = 'border-0 border-b-2 border-ink bg-transparent px-0.5 py-1.5 outline-none';
 	const errorText = 'text-lg text-red-700';
@@ -27,7 +30,8 @@
 		</p>
 	</div>
 
-	<div class="min-w-0 sketch-alt bg-white p-7 md:flex-1">
+	<!-- After a successful send the box hugs the thank-you message instead of stretching to the text column. -->
+	<div class={['min-w-0 sketch-alt bg-white p-7 md:flex-1', form?.success && 'md:self-center']}>
 		{#if form?.success}
 			<p class="text-2xl" role="status">Merci, on te répond aussi vite qu'un fanfaron le peut !</p>
 		{:else}
@@ -60,6 +64,7 @@
 									value={type}
 									required
 									checked={values?.type === type}
+									onchange={() => (selectedType = type)}
 									class="sr-only"
 								/>
 								{type}
@@ -70,7 +75,7 @@
 				</fieldset>
 
 				<label class="flex flex-col gap-1">
-					Qui es-tu donc ?
+					C'est quoi ton p'tit nom ?
 					<input
 						type="text"
 						name="name"
@@ -99,7 +104,7 @@
 				</label>
 
 				<label class="flex flex-col gap-1">
-					Donne-nous envie de t'inviter…
+					{selectedType === 'Bénévole' ? 'Parle-nous de toi…' : 'Donne-nous envie de vous choisir…'}
 					<textarea
 						name="message"
 						required
@@ -128,12 +133,85 @@
 					</p>
 				{/if}
 
-				<div>
+				<div class="flex justify-center">
 					<Button type="submit">
-						{sending ? 'Envoi en cours…' : 'Va petit oiseau, porte ce message'}
+						<span class="flex items-center gap-3">
+							{sending ? 'Envoi en cours…' : 'Va petit oiseau, porte ce message'}
+							<svg
+								viewBox="0 0 48 32"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								aria-hidden="true"
+								class={['bird h-9 w-auto shrink-0 translate-y-1.5', sending && 'bird--away']}
+							>
+								<path d="M2 14.5h9M3 18h8.5" />
+								<path
+									d="M11 13c5 .5 9-.5 12-3 3-3 7-4.5 10.5-3.5 2.5.8 4 2.6 4.5 4.6l4.5 1.4-4.6 1c-1.2 4.4-6 7-11.4 6.8-6-.2-10.5-2-15.5-3.3"
+								/>
+								<circle cx="35" cy="10.5" r="1" fill="currentColor" stroke="none" />
+								<path
+									class="wing"
+									d="M18 14c1.5 4 3 8 5.5 12M21 14.5c1.4 3.6 2.6 7.4 4.8 10.6M24 15c1.2 3 2.2 6.2 4 8.8M27 15.2c1 2.4 1.8 4.8 3.2 6.8"
+								/>
+							</svg>
+						</span>
 					</Button>
 				</div>
 			</form>
 		{/if}
 	</div>
 </section>
+
+<style>
+	/* The wing flips up over the body from its root line, like a flap. */
+	.wing {
+		transform-box: view-box;
+		transform-origin: 22px 14.5px;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.bird {
+			animation: bird-bob 1.4s ease-in-out infinite;
+		}
+		.wing {
+			animation: wing-flap 0.3s ease-in-out infinite alternate;
+		}
+		/* While the message is being sent, the bird takes off. */
+		.bird--away {
+			animation: bird-away 0.9s ease-in infinite;
+		}
+	}
+
+	@keyframes bird-bob {
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-3px);
+		}
+	}
+
+	@keyframes wing-flap {
+		from {
+			transform: scaleY(1);
+		}
+		to {
+			transform: scaleY(-0.6);
+		}
+	}
+
+	@keyframes bird-away {
+		from {
+			transform: translate(0, 0);
+			opacity: 1;
+		}
+		to {
+			transform: translate(28px, -12px);
+			opacity: 0;
+		}
+	}
+</style>
