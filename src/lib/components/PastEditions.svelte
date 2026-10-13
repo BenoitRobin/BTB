@@ -16,7 +16,7 @@
 </script>
 
 <section class="mx-auto mt-20 w-full max-w-6xl px-6">
-	<SectionHeading id="my-work" title="Comment c'était avant ?" />
+	<SectionHeading id="editions" title="Comment c'était avant ?" />
 
 	<div class="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
 		{#each editions as edition, i (edition.slug)}

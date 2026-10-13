@@ -4,7 +4,7 @@
 </script>
 
 <section class="mx-auto mt-20 w-full max-w-6xl px-6">
-	<SectionHeading id="skills" title="Partenaires" />
+	<SectionHeading id="partenaires" title="Partenaires" />
 
 	<div class="partners-marquee mt-8 overflow-hidden sketch-alt bg-white py-6">
 		<div class="partners-marquee__track flex w-max items-center">

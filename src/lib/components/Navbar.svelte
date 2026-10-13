@@ -5,9 +5,9 @@
 	let menuOpen = $state(false);
 
 	const links = [
-		{ id: 'about-me', label: "C'est quoi ?" },
-		{ id: 'my-work', label: 'Les éditions' },
-		{ id: 'skills', label: 'Partenaires' }
+		{ id: 'c-est-quoi', label: "C'est quoi ?" },
+		{ id: 'editions', label: 'Les éditions' },
+		{ id: 'partenaires', label: 'Partenaires' }
 	];
 </script>
 

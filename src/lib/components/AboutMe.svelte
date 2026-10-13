@@ -5,12 +5,13 @@
 	const facts = ['une dizaine de fanfares', 'trois scènes', 'une centaine de bénévoles'];
 </script>
 
-<section class="mx-auto mt-16 flex w-full max-w-6xl flex-col gap-10 px-6 md:flex-row">
-	<div class="min-w-0 md:flex-1">
-		<SectionHeading id="about-me" title="J'te parle de moi" />
+<section class="mx-auto mt-16 flex w-full max-w-6xl flex-col gap-10 px-6 lg:flex-row">
+	<!-- Wide enough for the title on one line; below lg it sits above the text instead. -->
+	<div class="min-w-0 lg:w-96 lg:shrink-0">
+		<SectionHeading id="c-est-quoi" title="J'te parle de moi" />
 	</div>
 
-	<div class="flex min-w-0 flex-col gap-4 sketch bg-white px-8 py-7 md:flex-[2]">
+	<div class="flex min-w-0 flex-col gap-4 sketch bg-white px-8 py-7 lg:flex-1">
 		<p>
 			Depuis presque 10 ans, j'organise un p'tit festival de fanfares avec mes amis dans mon village
 			de Chantelle, dans l'Allier, là où coule paisiblement la Bouble. Tout est parti d'une idée
