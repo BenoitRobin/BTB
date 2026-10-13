@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { page } from '$app/state';
 	import Button from './Button.svelte';
 	import SectionHeading from './SectionHeading.svelte';
 	import type { ActionData } from '../../routes/$types';
-	import { CONTACT_TYPES, PUBLIC_CONTACT_EMAIL } from '$lib/data/contact';
+	import { CONTACT_TYPES, PUBLIC_CONTACT_EMAIL, contactTypeSlug } from '$lib/data/contact';
 
 	let { form }: { form: ActionData } = $props();
 
@@ -13,8 +14,12 @@
 	const values = $derived(form && 'values' in form ? form.values : undefined);
 	const errors = $derived(form && 'errors' in form ? form.errors : undefined);
 
-	// Drives the message prompt; starts from what the server sent back after a failed submit.
-	let selectedType = $derived(values?.type ?? '');
+	// Links like /?type=benevole#contact (hero buttons) pre-select a choice.
+	const typeFromUrl = $derived(
+		CONTACT_TYPES.find((t) => contactTypeSlug(t) === page.url.searchParams.get('type')) ?? ''
+	);
+	// Drives the ticked choice and the message prompt; a failed submit's value wins, then the link's.
+	let selectedType = $derived(values?.type ?? typeFromUrl);
 
 	const field = 'border-0 border-b-2 border-ink bg-transparent px-0.5 py-1.5 outline-none';
 	const errorText = 'text-lg text-red-700';
@@ -68,7 +73,7 @@
 									name="type"
 									value={type}
 									required
-									checked={values?.type === type}
+									checked={selectedType === type}
 									onchange={() => (selectedType = type)}
 									class="sr-only"
 								/>

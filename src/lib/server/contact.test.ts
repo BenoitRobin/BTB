@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { isSpam, validateContact } from './contact';
+import { CONTACT_TYPES, contactTypeSlug } from '$lib/data/contact';
 
 function form(fields: Record<string, string>) {
 	const data = new FormData();
@@ -59,5 +60,11 @@ describe('isSpam', () => {
 	it('is true only when the honeypot is filled', () => {
 		expect(isSpam(form(valid))).toBe(false);
 		expect(isSpam(form({ ...valid, website: 'http://spam.example' }))).toBe(true);
+	});
+});
+
+describe('contactTypeSlug', () => {
+	it('gives the accent-free ?type= values used by the hero links', () => {
+		expect(CONTACT_TYPES.map(contactTypeSlug)).toEqual(['fanfaron', 'benevole']);
 	});
 });
