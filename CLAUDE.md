@@ -16,9 +16,15 @@ The website for "Bouge Ton Bouble" (BTB), a brass band / fanfare festival. It's 
 - `npm run format` — apply Prettier formatting
 - `npm run test` — run the Vitest tests (`*.test.ts`; currently only the contact form validation in `src/lib/server/contact.test.ts`)
 
+## Deployment & workflow
+
+- Hosted on Vercel (`adapter-auto`), project `festivalbougetonbouble`. Pushing `main` deploys production; pushing `dev` updates the preview at the `festivalbougetonbouble-git-dev-…vercel.app` alias (protected by Vercel login).
+- Day-to-day work happens on `dev`; `main` is fast-forwarded from `dev` to go live.
+- Server secrets live in Vercel env vars (Production/Preview) and locally in `.env` (git-ignored): see the Contact form and Instagram bullets below for the names. `vercel.json` only declares the weekly Instagram token cron, which runs on production deployments only.
+
 ## Architecture
 
-- **Single page, section components**: `src/routes/+page.svelte` just imports and stacks the section components in order (`Navbar`, `Hero`, `AnnouncementBanner`, `Instagram`, `AboutMe`, `PastEditions`, `PastBands`, `Partners`, `ContactForm`, `Footer`). To reorder or add a section, edit that file; each component is self-contained and manages its own `<section>`/layout.
+- **Home page = stacked section components**: `src/routes/+page.svelte` just imports and stacks the section components in order (`Navbar`, `Hero`, `AnnouncementBanner`, `Instagram`, `AboutMe`, `PastEditions`, `PastBands`, `Partners`, `ContactForm`, `Footer`). To reorder or add a section, edit that file; each component is self-contained and manages its own `<section>`/layout.
 - **`src/routes/+layout.svelte`**: loads global CSS (`layout.css`) and the Google Font (`Baloo 2`), sets the favicon. No layout chrome (nav/footer live inside `+page.svelte`, not the layout).
 - **Content lives in `src/lib/data/*.ts`, not in components**: `editions.ts` (current + past festival editions, each with its cover `image` import, its Lightroom share/album ids and a fallback gallery URL; as one `editions` array, most recent first), `partners.ts` (sponsor list, each with a local logo import and optional external URL), `pastBands.ts` (past performers with external links). When asked to add/update a partner, band, or edition, edit these typed data files rather than the components that render them.
 - **Partner logos**: imported as ES modules from `src/lib/assets/partners/` and referenced from `partners.ts` — adding a partner means dropping the image in that folder and adding an entry with the corresponding import.
