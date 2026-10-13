@@ -41,6 +41,13 @@ describe('validateContact', () => {
 		);
 	});
 
+	it('counts a line break as one character, like the textarea maxlength', () => {
+		const message = 'a'.repeat(4980) + '\r\n'.repeat(10);
+		const { values, errors } = validateContact(form({ ...valid, message: message + 'fin' }));
+		expect(values.message).not.toContain('\r');
+		expect(errors).toEqual({});
+	});
+
 	it('trims surrounding spaces', () => {
 		const { values, errors } = validateContact(form({ ...valid, name: '  Camille  ' }));
 		expect(values.name).toBe('Camille');

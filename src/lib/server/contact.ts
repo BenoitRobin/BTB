@@ -1,16 +1,17 @@
 import { env } from '$env/dynamic/private';
 import { CONTACT_TYPES } from '$lib/data/contact';
 
-/** Shown to the visitor only when sending fails, so they still have a way to reach us. */
-export const PUBLIC_CONTACT_EMAIL = 'contact@bougetonbouble.fr';
-
 export type ContactValues = { type: string; name: string; email: string; message: string };
 export type ContactErrors = Partial<Record<keyof ContactValues, string>>;
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function validateContact(formData: FormData) {
-	const field = (key: string) => String(formData.get(key) ?? '').trim();
+	// Browsers submit line breaks as \r\n but count them as one character for maxlength: match that.
+	const field = (key: string) =>
+		String(formData.get(key) ?? '')
+			.replace(/\r\n/g, '\n')
+			.trim();
 	const values: ContactValues = {
 		type: field('type'),
 		name: field('name'),

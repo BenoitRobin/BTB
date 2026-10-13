@@ -1,11 +1,6 @@
 import { fail } from '@sveltejs/kit';
 import { getInstagramPosts } from '$lib/server/instagram';
-import {
-	PUBLIC_CONTACT_EMAIL,
-	isSpam,
-	sendContactEmail,
-	validateContact
-} from '$lib/server/contact';
+import { isSpam, sendContactEmail, validateContact } from '$lib/server/contact';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ fetch, setHeaders }) => {
@@ -24,7 +19,7 @@ export const actions: Actions = {
 		if (Object.keys(errors).length) return fail(400, { values, errors });
 
 		if (!(await sendContactEmail(fetch, values))) {
-			return fail(502, { values, sendFailed: true, fallbackEmail: PUBLIC_CONTACT_EMAIL });
+			return fail(502, { values, sendFailed: true });
 		}
 		return { success: true };
 	}

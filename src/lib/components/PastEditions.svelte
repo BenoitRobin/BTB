@@ -1,13 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import SectionHeading from './SectionHeading.svelte';
-	import { editions as allEditions } from '$lib/data/editions';
-	import placeholder2026 from '$lib/assets/placeholder/placeholder2026.jpg';
-	import placeholder2025 from '$lib/assets/placeholder/placeholder2025.jpg';
-	import placeholder2024 from '$lib/assets/placeholder/placeholder2024.jpg';
-
-	const placeholders = [placeholder2026, placeholder2025, placeholder2024];
-	const editions = allEditions.map((edition, i) => ({ ...edition, image: placeholders[i] }));
+	import { editions } from '$lib/data/editions';
 	const tilts = ['-rotate-1', 'rotate-1', '-rotate-[0.5deg]'];
 
 	// Four strokes of the hover burst (top, right, bottom, left). Fixed but mismatched timings, so they

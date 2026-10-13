@@ -3,11 +3,13 @@
 	import Button from './Button.svelte';
 	import SectionHeading from './SectionHeading.svelte';
 	import type { ActionData } from '../../routes/$types';
-	import { CONTACT_TYPES } from '$lib/data/contact';
+	import { CONTACT_TYPES, PUBLIC_CONTACT_EMAIL } from '$lib/data/contact';
 
 	let { form }: { form: ActionData } = $props();
 
 	let sending = $state(false);
+	// Set when the request itself fails (network down, server crash), where no `form` result comes back.
+	let requestFailed = $state(false);
 	const values = $derived(form && 'values' in form ? form.values : undefined);
 	const errors = $derived(form && 'errors' in form ? form.errors : undefined);
 
@@ -35,12 +37,17 @@
 		{:else}
 			<form
 				method="POST"
-				action="?/contact"
-				use:enhance={() => {
+				action="?/contact#contact"
+				use:enhance={({ cancel }) => {
+					// Ignore extra clicks while a message is already on its way, so it is sent once.
+					if (sending) return cancel();
 					sending = true;
-					return async ({ update }) => {
+					requestFailed = false;
+					return async ({ result, update }) => {
+						// A failed request would replace the page with an error screen and lose the message: keep the form instead.
+						if (result.type === 'error') requestFailed = true;
 						// Keep what the visitor typed if the server sends errors back.
-						await update({ reset: false });
+						else await update({ reset: false });
 						sending = false;
 					};
 				}}
@@ -123,11 +130,11 @@
 					</label>
 				</div>
 
-				{#if form && 'sendFailed' in form}
+				{#if requestFailed || (form && 'sendFailed' in form)}
 					<p class={errorText} role="alert">
 						Oups, le pigeon s'est perdu… Réessaie dans un instant ou écris-nous directement à
 						<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- mailto link, not an app route -->
-						<a href="mailto:{form.fallbackEmail}" class="underline">{form.fallbackEmail}</a>.
+						<a href="mailto:{PUBLIC_CONTACT_EMAIL}" class="underline">{PUBLIC_CONTACT_EMAIL}</a>.
 					</p>
 				{/if}
 
